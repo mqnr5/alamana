@@ -1,50 +1,5 @@
 <template>
-  <div class="app-container">
-    <h1>نظام الأمانة العامة - العتبة العلوية</h1>
-
-    <!-- القائمة الرئيسية -->
-    <div v-if="!currentView" class="nav-buttons">
-      <button @click="goToSection('admin')">رئيس الإدارة</button>
-      <button @click="goToSection('section')">رئيس القسم</button>
-      <button @click="goToSection('employee')">الموظف</button>
-    </div>
-
-    <!-- رئيس الإدارة -->
-    <div v-if="currentView === 'admin'" class="section-box">
-      <h2>رئيس الإدارة</h2>
-      <p>الدور الأساسي لرئيس الإدارة هو الإشراف الكامل والتنسيق بين الأقسام المختلفة داخل الأمانة العامة.</p>
-      
-      <ul>
-        <li>الإشراف الكامل على جميع الأقسام بما يشمل متابعة العمل وتقارير الإنجاز.</li>
-        <li>استلام تقارير الإنجاز اليومية والأسبوعية من رؤساء الأقسام.</li>
-        <li>إصدار التعليمات والتوجيهات لرؤساء الأقسام حسب الحاجة.</li>
-        <li>متابعة حالة كل قسم (نشط، متأخر، بحاجة لدعم).</li>
-      </ul>
-
-      <h3>تقارير رئيس الإدارة</h3>
-      <ul class="report-list">
-        <li>تقرير نشاط الأقسام - الأسبوع الأول من الشهر</li>
-        <li>تقرير إنجاز مهام الطوارئ</li>
-        <li>تحليل نقاط القوة والضعف للأقسام</li>
-      </ul>
-
-      <div class="nav-sub-buttons">
-        <button :disabled="adminPage === 1" @click="adminPage--">رجوع</button>
-        <button :disabled="adminPage === 2" @click="adminPage++">التالي</button>
-      </div>
-
-      <!-- صفحات فرعية لرئيس الإدارة -->
-      <div v-if="adminPage === 1" class="admin-subpage">
-        <h4>الصفحة 1: المهام الأساسية</h4>
-        <p>رئيس الإدارة يقوم بمتابعة تنفيذ الخطط الاستراتيجية والتأكد من التنسيق بين الأقسام المختلفة.</p>
-      </div>
-      <div v-if="adminPage === 2" class="admin-subpage">
-        <h4>الصفحة 2: التعليمات والتوجيهات</h4>
-        <p>يمكن لرئيس الإدارة إصدار تعليمات محددة لرؤساء الأقسام لتسريع تنفيذ بعض المهام أو تعديل الخطط حسب المستجدات.</p>
-      </div>
-
-      <button @click="currentView = null" class="back-main">العودة إلى القائمة الرئيسية</button>
-    </div>
+    <HomePage />
 
     <!-- رئيس القسم -->
     <div v-if="currentView === 'section'" class="section-box">
@@ -126,11 +81,14 @@
 
       <button @click="currentView = null" class="back-main">العودة إلى القائمة الرئيسية</button>
     </div>
-  </div>
 </template>
 
 <script>
+import HomePage from './components/HomePage.vue';
 export default {
+  components: { 
+    HomePage
+  },
   data() {
     return {
       currentView: null,
