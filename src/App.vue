@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <HomePage v-if="!currentView" @navigate="goToSection" />
+    <HomePage />
 
     <!-- رئيس القسم -->
     <div v-if="currentView === 'section'" class="section-box">
@@ -86,6 +86,7 @@
 <script>
 import HomePage from './components/HomePage.vue';
 export default {
+  name: 'App',
   components: { HomePage },
   data() {
     return {
