@@ -11,7 +11,7 @@ export const router = createRouter({
             component: HomeView
         },
         {
-            path: 'ChairManagement',
+            path: '/ChairManagement',
             name: 'ChairManagement',
             component: ChairManagementView
         }
