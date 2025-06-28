@@ -6,6 +6,9 @@ import ManageUsersView from "@/views/ManageUsersView.vue";
 import SystemSettingsView from "@/views/SystemSettingsView.vue";
 import DepartmentHeadView from "@/views/DepartmentHeadView.vue";
 import EmployeeView from "@/views/EmployeeView.vue";
+import PerformanceReportsView from "@/views/PerformanceReportsView.vue";
+import MajorRequestsView from "@/views/MajorRequestsView.vue";
+import TasksView from "@/views/TasksView.vue";
 
 const router = createRouter({
     history: createWebHistory('/'),
@@ -47,29 +50,26 @@ const router = createRouter({
             component: EmployeeView
         },
         {
-  path: '/PerformanceReports',
-  name: 'PerformanceReports',
- component: () => import('@/views/PerformanceReports.vue')
+            path: '/PerformanceReports',
+            name: 'PerformanceReports',
+            component: PerformanceReportsView
 
-},
-{
-  path: '/MajorRequests',
-  name: 'MajorRequests',
-  component: () => import('@/views/MajorRequests.vue')
-},
-{
-  path: '/EmployeeView',
-  name: 'EmployeeView',
-  component: () => import('@/views/EmployeeView.vue')
-},
-{
-  path: '/Tasks',
-  name: 'Tasks',
-  component: () => import('@/views/Tasks View.vue')
-}
-
-
-
+        },
+        {
+            path: '/MajorRequests',
+            name: 'MajorRequests',
+            component: MajorRequestsView
+        },
+        {
+            path: '/EmployeeView',
+            name: 'EmployeeView',
+            component: EmployeeView
+        },
+        {
+            path: '/Tasks',
+            name: 'Tasks',
+            component: TasksView
+        }
     ]
 })
 
