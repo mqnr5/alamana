@@ -3,7 +3,7 @@ export default {
     name: 'TodoList',
     props: {
         tasks: {
-            type: Array.of(typeof Map),
+            type: Array,
             required: false
         }
     },
