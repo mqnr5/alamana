@@ -8,7 +8,9 @@ export default {
   },
   methods: {
     goToSection(section) {
-      this.$router.push(section);
+      this.$router.push({ name: section , 
+        params: { tasks: [] }
+      });
     },
   },
 };
@@ -31,7 +33,7 @@ export default {
 
 <style scoped>
 .home-container {
-  background-color: #ffffff;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -69,6 +71,6 @@ export default {
 
 .section-button:hover {
   background-color: #fac5d4;
-  color: #ffffff;
+  color: white;
 }
 </style>
