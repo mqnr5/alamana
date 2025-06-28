@@ -4,8 +4,8 @@ import ChairManagementView from "@/views/ChairManagementView.vue";
 import ManageUsers from "@/components/ManageUsers.vue";
 import SystemSettings from "@/components/SystemSettings.vue";
 
-export const router = createRouter({
-    history: createWebHistory(),
+const router = createRouter({
+    history: createWebHistory('/'),
     routes: [
         {
             path: '/',
@@ -31,4 +31,4 @@ export const router = createRouter({
     ]
 })
 
-
+export default router;
