@@ -82,12 +82,10 @@ export default {
     }
   }
 };
-</script>
-
-<style scoped>
+</script><style scoped>
 .chair-container {
-  background-color: #f6f4f2;
-  color: #4a4a4a;
+  background-color: #ffffff;
+  color: #0b1957;
   padding: 40px 25px;
   max-width: 1000px;
   margin: auto;
@@ -97,8 +95,9 @@ export default {
 }
 
 h2 {
-  color: #6d7cd9;
+  color: #0b1957;
   font-size: 28px;
+  margin-bottom: 20px;
 }
 
 .filters {
@@ -108,8 +107,10 @@ h2 {
 select {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-top: 10px;
+  border: 2px solid #A40033;
+  background-color: #e9f3ff;
+  color: #0b1957;
+  font-weight: bold;
 }
 
 .stats {
@@ -120,8 +121,8 @@ select {
 }
 
 .stat-box {
-  background-color: #dec7e0;
-  border: 2px solid #b1dfe4;
+  background-color: #f7f4ed;
+  border: 2px solid #d2b3db;
   padding: 20px;
   border-radius: 10px;
   flex: 1 1 40%;
@@ -134,9 +135,9 @@ select {
 }
 
 .stat-value {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  color: #6d7cd9;
+  color: #A40033;
 }
 
 .requests {
@@ -149,8 +150,8 @@ select {
 }
 
 .requests li {
-  background: #fff8f5;
-  border: 1px solid #f99866;
+  background: #e9f3ff;
+  border: 1px solid #d2b3db;
   padding: 12px;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -158,15 +159,17 @@ select {
 
 .requests button {
   margin-right: 10px;
-  background-color: #c1e0ba;
+  background-color: #d2b3db;
   border: none;
-  padding: 5px 10px;
-  border-radius: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
+  color: #0b1957;
 }
 
 .requests button:hover {
-  background-color: #fac5d4;
+  background-color: #A40033;
   color: white;
 }
 
@@ -177,16 +180,18 @@ select {
 }
 
 .actions button {
-  background-color: #ffc046;
+  background-color: #A40033;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 22px;
   border-radius: 10px;
   font-weight: bold;
   border: none;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .actions button:hover {
-  background-color: #f99866;
+  background-color: #d2b3db;
+  color: #0b1957;
 }
 </style>

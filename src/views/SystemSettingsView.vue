@@ -40,58 +40,79 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .settings-container {
-  background-color: #ffffff;
+  background-color: #ffffff; /* خلفية بيضاء عامة */
   padding: 30px;
   border-radius: 15px;
   max-width: 700px;
   margin: auto;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
-  color: #6d7cd9;
+  color: #0b1957; /* لون الخطوط الأساسي */
+  direction: rtl;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h2 {
-  color: #b1dfe4;
+  color: #0b1957; /* عناوين باللون الداكن */
   text-align: center;
   margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 28px;
 }
 
 .setting-section {
-  background-color: #dec7e0;
+  background-color: #e9f3ff; /* خلفية هادئة ومريحة للحقول */
   padding: 20px;
-  direction: rtl;
   margin-bottom: 20px;
-  border-radius: 10px;
-  color: #6d7cd9;
+  border-radius: 12px;
+  color: #0b1957;
   font-size: 16px;
+  border: 2px solid #d2b3db; /* إطار أنيق وناعم */
+  box-shadow: 2px 2px 8px rgba(210,179,219,0.3);
 }
 
 select {
-  padding: 8px 12px;
-  border: 2px solid #f99866;
-  border-radius: 8px;
+  padding: 10px 14px;
+  border: 2px solid #d2b3db; /* إطار أفتح */
+  border-radius: 12px;
   margin-top: 10px;
-  font-size: 15px;
-  color: #6d7cd9;
+  font-size: 16px;
+  color: #0b1957;
+  background-color: #f7f4ed; /* خلفية مريحة */
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+select:hover, select:focus {
+  border-color: #A40033; /* لون بارز عند التفاعل */
+  outline: none;
 }
 
 input[type="checkbox"] {
   margin-left: 10px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
 }
 
 .backup-btn {
-  background-color: #ffc046;
+  background-color: #A40033; /* لون خلفية الأزرار */
   color: white;
   border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 16px;
+  display: block;
+  margin: 30px auto 0 auto;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(164,0,51,0.4);
 }
 
 .backup-btn:hover {
-  background-color: #f99866;
+  background-color: #4E5174; /* لون بديل عند التمرير */
 }
 </style>

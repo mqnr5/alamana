@@ -35,20 +35,33 @@ export default {
     </div>
   </div>
 </template>
-
 <style scoped>
 .tasks-container {
-  width: 60%;
-  height: 100%;
+  width: 70%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  direction: rtl;
+  text-align: right;
+  color: #0b1957;
 }
+
 .tasks-list {
-  margin: 20px;
+  margin-top: 20px;
+  width: 100%;
+  background-color: #f7f4ed;
+  border: 2px dashed #d2b3db;
+  padding: 20px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 15px;
 }
 </style>

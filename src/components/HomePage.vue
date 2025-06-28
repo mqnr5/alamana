@@ -33,23 +33,23 @@ export default {
     </div>
   </div>
 </template>
-
 <style scoped>
 .home-container {
   background-color: white;
-  height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
+  direction: rtl;
+  text-align: center;
 }
 
 .title h1 {
-  color: #b1dfe4;
-  font-size: 28px;
+  color: #0b1957;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 40px;
-  text-align: center;
 }
 
 .section-buttons {
@@ -57,23 +57,23 @@ export default {
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
 }
 
 .section-button {
-  background-color: #c1e0ba;
-  border: 2px solid #f99866;
-  color: #6d7cd9;
+  background-color: #f7f4ed;
+  border: 2px solid #A40033;
+  color: #0b1957;
   font-size: 18px;
   padding: 15px;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .section-button:hover {
-  background-color: #fac5d4;
+  background-color: #A40033;
   color: white;
 }
 </style>
