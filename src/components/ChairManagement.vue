@@ -6,12 +6,15 @@ export default {
   components: {
     TodoList
   },
-  props: {
-    tasks: {
-      type: Array,
-      required: true
+  data() {
+    return {
+      tasks: [
+        { id: 1, title: "مراجعة البريد الرسمي", done: false },
+        { id: 2, title: "تنظيم الاجتماعات", done: true },
+        { id: 3, title: "متابعة تقارير الموظفين", done: false }
+      ]
     }
-},
+  }
 }
 </script>
 

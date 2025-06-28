@@ -1,11 +1,11 @@
-import HomeView from "@/views/HomeView.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "@/views/HomeView.vue";
 import ChairManagementView from "@/views/ChairManagementView.vue";
 import ManageUsers from "@/components/ManageUsers.vue";
 import SystemSettings from "@/components/SystemSettings.vue";
 
-const router = createRouter({
-    history: createWebHistory('/'),
+export const router = createRouter({
+    history: createWebHistory(),
     routes: [
         {
             path: '/',
@@ -31,4 +31,4 @@ const router = createRouter({
     ]
 })
 
-export default router;
+
