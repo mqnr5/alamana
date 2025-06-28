@@ -45,7 +45,20 @@ const router = createRouter({
             path: '/Employee',
             name: 'Employee',
             component: EmployeeView
-        }
+        },
+        {
+  path: '/PerformanceReports',
+  name: 'PerformanceReports',
+ component: () => import('@/views/PerformanceReports.vue')
+
+},
+{
+  path: '/MajorRequests',
+  name: 'MajorRequests',
+  component: () => import('@/views/MajorRequests.vue')
+}
+
+
     ]
 })
 
