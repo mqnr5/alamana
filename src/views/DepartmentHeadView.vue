@@ -32,12 +32,16 @@ export default {
 </template>
 <style scoped>
 .view {
-  background-color: beige;
-  height: auto;
-  display: flex;
+  background-color: #ffffff;
+  color: #0b1957;
   font-size: 26px;
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  max-width: 900px;
+  margin: auto;
 }
 </style>

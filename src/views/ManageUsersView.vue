@@ -62,7 +62,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .users-container {
   background-color: #ffffff;
@@ -70,71 +69,96 @@ export default {
   border-radius: 15px;
   max-width: 1000px;
   margin: auto;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
-  color: #6d7cd9;
+  box-shadow: 0 0 15px rgba(210, 179, 219, 0.4);
+  color: #0b1957;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h2 {
-  color: #b1dfe4;
+  color: #0b1957;
   text-align: center;
   margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 26px;
 }
 
 .add-user-button {
-  background-color: #fac5d4;
+  background-color: #d2b3db;
   border: none;
-  padding: 10px 18px;
-  color: #6d7cd9;
-  font-weight: bold;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  padding: 10px 20px;
+  color: #0b1957;
+  font-weight: 700;
+  border-radius: 10px;
+  margin-bottom: 25px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(210, 179, 219, 0.6);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .add-user-button:hover {
-  background-color: #f99866;
-  color: white;
+  background-color: #A40033;
+  color: #f7f4ed;
 }
 
 .users-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #dec7e0;
+  background-color: #f7f4ed;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(210, 179, 219, 0.3);
+  overflow: hidden;
 }
-
 .users-table th,
 .users-table td {
-  padding: 12px;
+  padding: 14px 18px;
   text-align: center;
-  border: 1px solid #ffffff;
+  border: 1px solid #e9f3ff;
+  color: #0b1957;
+  font-weight: 600;
+  font-size: 15px;
 }
-
 .users-table th {
-  background-color: #b1dfe4;
-  color: white;
+  background-color: #d2b3db;
+  color: #ffffff;
+}
+.users-table tbody tr:nth-child(even) {
+  background-color: #e9f3ff;
+}
+.users-table tbody tr:hover {
+  background-color: #d2b3db;
+  color: #f7f4ed;
+  transition: background-color 0.3s ease;
 }
 
 .edit-btn {
   background-color: #ffc046;
-  color: white;
+  color: #0b1957;
   border: none;
-  padding: 5px 12px;
-  border-radius: 6px;
-  margin-right: 5px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin-right: 6px;
   cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(255, 192, 70, 0.6);
+  transition: background-color 0.3s ease;
+}
+.edit-btn:hover {
+  background-color: #A40033;
+  color: #f7f4ed;
 }
 
 .delete-btn {
   background-color: #f99866;
-  color: white;
+  color: #f7f4ed;
   border: none;
-  padding: 5px 12px;
-  border-radius: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(249, 152, 102, 0.6);
+  transition: background-color 0.3s ease;
 }
-
-.edit-btn:hover,
 .delete-btn:hover {
-  opacity: 0.9;
+  background-color: #A40033;
+  color: #f7f4ed;
 }
 </style>

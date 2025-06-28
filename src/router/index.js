@@ -56,7 +56,18 @@ const router = createRouter({
   path: '/MajorRequests',
   name: 'MajorRequests',
   component: () => import('@/views/MajorRequests.vue')
+},
+{
+  path: '/EmployeeView',
+  name: 'EmployeeView',
+  component: () => import('@/views/EmployeeView.vue')
+},
+{
+  path: '/Tasks',
+  name: 'Tasks',
+  component: () => import('@/views/Tasks View.vue')
 }
+
 
 
     ]

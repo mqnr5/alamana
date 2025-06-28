@@ -93,11 +93,10 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .major-requests {
   background-color: #ffffff;
-  color: #6d7cd9;
+  color: #0b1957;
   padding: 30px;
   max-width: 950px;
   margin: auto;
@@ -105,54 +104,64 @@ export default {
   direction: rtl;
   text-align: right;
 }
+
 h2 {
-  color: #b1dfe4;
+  color: #0b1957;
   margin-bottom: 10px;
 }
+
 .filters {
   margin: 20px 0;
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 select {
   padding: 10px;
   border-radius: 8px;
-  border: 2px solid #f99866;
-  background-color: #fff8f5;
-  color: #6d7cd9;
+  border: 2px solid #A40033;
+  background-color: #e9f3ff;
+  color: #0b1957;
+  font-weight: bold;
 }
+
 .request-table table {
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
-  background-color: #f9f4ff;
+  background-color: #f7f4ed;
   border-radius: 10px;
   overflow: hidden;
 }
+
 .request-table th,
 .request-table td {
   padding: 14px;
-  border: 1px solid #eee;
+  border: 1px solid #fff;
   text-align: center;
+  color: #0b1957;
 }
+
 .status {
   font-weight: bold;
   padding: 6px 12px;
   border-radius: 10px;
-}
-.status.قيد\:المراجعة {
-  background-color: #ffc046;
   color: white;
 }
+
+.status.قيد\:المراجعة {
+  background-color: #d2b3db;
+}
+
 .status.مقبول {
   background-color: #4caf50;
-  color: white;
 }
+
 .status.مرفوض {
-  background-color: #f44336;
-  color: white;
+  background-color: #A40033;
 }
+
 button {
   margin: 5px;
   padding: 8px 16px;
@@ -161,23 +170,29 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  background-color: #A40033;
+  color: white;
 }
+
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
 button:not(:disabled):hover {
-  background-color: #fac5d4;
-  color: white;
+  background-color: #d2b3db;
+  color: #0b1957;
 }
+
 .no-data {
   margin-top: 25px;
   font-weight: bold;
-  color: #f99866;
+  color: #A40033;
 }
+
 .back-main {
   margin-top: 40px;
-  background-color: #ffc046;
+  background-color: #A40033;
   color: white;
   padding: 12px 30px;
   border-radius: 12px;

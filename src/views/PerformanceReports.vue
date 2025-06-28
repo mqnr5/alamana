@@ -92,71 +92,125 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .performance-container {
   background-color: #ffffff;
-  color: #6d7cd9;
+  color: #0b1957;
   padding: 30px;
   max-width: 950px;
   margin: auto;
   border-radius: 15px;
   direction: rtl;
   text-align: right;
+  box-shadow: 0 0 15px rgba(210, 179, 219, 0.4);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 h2 {
-  color: #b1dfe4;
+  color: #0b1957;
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 .filters {
-  margin: 20px 0;
+  margin: 25px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #0b1957;
+  font-size: 16px;
 }
 select {
-  padding: 10px;
+  padding: 10px 14px;
   border-radius: 8px;
-  border: 2px solid #f99866;
-  background-color: #fff8f5;
-  color: #6d7cd9;
+  border: 2px solid #A40033;
+  background-color: #e9f3ff;
+  color: #0b1957;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 180px;
+  transition: border-color 0.3s ease;
 }
+select:hover, select:focus {
+  border-color: #4E5174;
+  outline: none;
+}
+
 .report-table table {
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
-  background-color: #dec7e0;
+  background-color: #f7f4ed;
+  box-shadow: 0 4px 10px rgba(210, 179, 219, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
 }
 .report-table th,
 .report-table td {
-  padding: 12px;
-  border: 1px solid #fff;
+  padding: 14px 18px;
+  border: 1px solid #e9f3ff;
   text-align: center;
+  color: #0b1957;
+  font-weight: 600;
+  font-size: 15px;
+}
+.report-table th {
+  background-color: #d2b3db;
+  color: #ffffff;
+}
+.report-table tbody tr:nth-child(even) {
+  background-color: #e9f3ff;
+}
+.report-table tbody tr:hover {
+  background-color: #d2b3db;
+  color: white;
+  transition: background-color 0.3s ease;
 }
 .no-data {
   margin-top: 20px;
-  color: #f99866;
-  font-weight: bold;
+  color: #A40033;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
 }
+
 .status {
-  font-weight: bold;
-  padding: 6px 12px;
-  border-radius: 8px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 12px;
   color: white;
+  display: inline-block;
+  min-width: 90px;
 }
 .status.excellent {
-  background-color: #6d7cd9;
+  background-color: #0b1957;
 }
 .status.good {
   background-color: #ffc046;
+  color: #0b1957;
 }
 .status.weak {
-  background-color: #f99866;
+  background-color: #A40033;
 }
 .back-main {
-  margin-top: 30px;
-  background-color: #ffc046;
+  margin-top: 35px;
+  background-color: #A40033;
   color: white;
-  padding: 10px 25px;
-  border-radius: 10px;
+  padding: 12px 30px;
+  border-radius: 12px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-weight: 700;
+  font-size: 17px;
+  box-shadow: 0 5px 18px rgba(164, 0, 51, 0.6);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.back-main:hover {
+  background-color: #4E5174;
+  box-shadow: 0 6px 20px rgba(78, 81, 116, 0.8);
 }
 </style>
