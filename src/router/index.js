@@ -1,6 +1,8 @@
 import HomeView from "@/views/HomeView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import ChairManagementView from "@/views/ChairManagementView.vue";
+import ManageUsers from "@/components/ManageUsers.vue";
+import SystemSettings from "@/components/SystemSettings.vue";
 
 export const router = createRouter({
     history: createWebHistory(),
@@ -13,20 +15,19 @@ export const router = createRouter({
         {
             path: '/ChairManagement',
             name: 'ChairManagement',
-            component: ChairManagementView
+            component: ChairManagementView,
+            props: true
         },
         {
-  path: '/ManageUsers',
-  name: 'ManageUsers',
-  component: () => import('@/components/ManageUsers.vue')
-},
-{
-  path: '/SystemSettings',
-  name: 'SystemSettings',
-  component: () => import('@/components/SystemSettings.vue')
-}
-
-
+            path: '/ManageUsers',
+            name: 'ManageUsers',
+            component: ManageUsers
+        },
+        {
+            path: '/SystemSettings',
+            name: 'SystemSettings',
+            component: SystemSettings
+        }
     ]
 })
 
