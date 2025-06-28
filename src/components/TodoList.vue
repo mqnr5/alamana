@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     checkTask(task) {
-      task.done = !task.done;
+      task.checked = !task.checked;
     }
   }
 }
@@ -28,8 +28,8 @@ export default {
     <div class="tasks-list">
       <ul class="list">
         <li v-for="task in todos" :key="task.id">
-          <input type="checkbox" :checked="task.done" @change="checkTask(task)">
-          {{ task.title }}
+          <input type="checkbox" :checked="task.checked" @change="checkTask(task)">
+          {{ task.text }}
         </li>
       </ul>
     </div>
