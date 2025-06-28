@@ -3,18 +3,31 @@ import { createRouter, createWebHistory } from "vue-router";
 import ChairManagementView from "@/views/ChairManagementView.vue";
 
 export const router = createRouter({
-    history: createWebHistory('/'),
+    history: createWebHistory(),
     routes: [
         {
             path: '/',
-            name: 'HomeView',
+            name: 'Home',
             component: HomeView
         },
         {
             path: '/ChairManagement',
             name: 'ChairManagement',
-            component: ChairManagementView,
-            props: true
-        }
+            component: ChairManagementView
+        },
+        {
+  path: '/ManageUsers',
+  name: 'ManageUsers',
+  component: () => import('@/components/ManageUsers.vue')
+},
+{
+  path: '/SystemSettings',
+  name: 'SystemSettings',
+  component: () => import('@/components/SystemSettings.vue')
+}
+
+
     ]
 })
+
+
