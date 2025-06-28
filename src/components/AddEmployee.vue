@@ -38,7 +38,7 @@ export default {
                 <option value="محاسب">محاسب</option>
             </select>
             <br>
-            <button type="submit">إضافة موظف</button>
+            <button @click="addEmp">إضافة موظف</button>
         </form>
     </div>
 </template>
