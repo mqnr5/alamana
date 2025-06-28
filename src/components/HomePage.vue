@@ -7,14 +7,17 @@ export default {
     };
   },
   methods: {
-    goToSection(section) {
-      this.$router.push({ name: section , 
-        params: { tasks: [] }
-      });
+    goToSection(section, props) {
+      if (props) {
+        this.$router.push({ name: section, params: props });
+      } else {
+        this.$router.push({ name: section });
+      }
     },
   },
 };
 </script>
+
 
 <template>
   <div class="home-container">
@@ -23,10 +26,10 @@ export default {
     </div>
 
     <div class="section-buttons">
-      <button @click="goToSection('SuperAdmin')" class="section-button">رئيس الأمانة</button>
-      <button @click="goToSection('ChairManagement')" class="section-button">رئيس الإدارة</button>
-      <button @click="goToSection('DepartmentHead')" class="section-button">رئيس القسم</button>
-      <button @click="goToSection('Employee')" class="section-button">الموظف</button>
+      <button @click="goToSection('SuperAdmin', false)" class="section-button">رئيس الأمانة</button>
+      <button @click="goToSection('ChairManagement', false)" class="section-button">رئيس الإدارة</button>
+      <button @click="goToSection('DepartmentHead', false)" class="section-button">رئيس القسم</button>
+      <button @click="goToSection('Employee', false)" class="section-button">الموظف</button>
     </div>
   </div>
 </template>
@@ -34,7 +37,7 @@ export default {
 <style scoped>
 .home-container {
   background-color: white;
-  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,16 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
+import SuperAdminView from "@/views/SuperAdminView.vue";
 import ChairManagementView from "@/views/ChairManagementView.vue";
-import ManageUsers from "@/components/ManageUsers.vue";
-import SystemSettings from "@/components/SystemSettings.vue";
+import ManageUsersView from "@/views/ManageUsersView.vue";
+import SystemSettingsView from "@/views/SystemSettingsView.vue";
+import DepartmentHeadView from "@/views/DepartmentHeadView.vue";
+import EmployeeView from "@/views/EmployeeView.vue";
 
-export const router = createRouter({
-    history: createWebHistory(),
+const router = createRouter({
+    history: createWebHistory('/'),
     routes: [
         {
             path: '/',
             name: 'Home',
             component: HomeView
+        },
+        {
+            path: '/SuperAdmin',
+            name: 'SuperAdmin',
+            component: SuperAdminView
         },
         {
             path: '/ChairManagement',
@@ -21,14 +29,24 @@ export const router = createRouter({
         {
             path: '/ManageUsers',
             name: 'ManageUsers',
-            component: ManageUsers
+            component: ManageUsersView
         },
         {
             path: '/SystemSettings',
             name: 'SystemSettings',
-            component: SystemSettings
+            component: SystemSettingsView
+        },
+        {
+            path: '/DepartmentHead',
+            name: 'DepartmentHead',
+            component: DepartmentHeadView
+        },
+        {
+            path: '/Employee',
+            name: 'Employee',
+            component: EmployeeView
         }
     ]
 })
 
-
+export default router;

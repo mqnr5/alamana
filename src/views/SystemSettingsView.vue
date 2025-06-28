@@ -3,7 +3,7 @@
     <h2>إعدادات النظام</h2>
 
     <div class="setting-section">
-      <label for="language">اختيار اللغة:</label>
+      <label for="language">اختيار اللغة : </label>
       <select id="language" v-model="language">
         <option value="ar">العربية</option>
         <option value="en">الإنجليزية</option>
@@ -61,6 +61,7 @@ h2 {
 .setting-section {
   background-color: #dec7e0;
   padding: 20px;
+  direction: rtl;
   margin-bottom: 20px;
   border-radius: 10px;
   color: #6d7cd9;

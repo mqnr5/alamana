@@ -6,7 +6,7 @@
     <h3>لوحة التحكم العامة</h3>
     <div class="stats-boxes">
       <div class="stat-card" v-for="stat in stats" :key="stat.title">
-        <span class="stat-title">{{ stat.title }}</span>
+        <span class="stat-title">{{ stat.title }} : </span>
         <span class="stat-value">{{ stat.value }}</span>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <button @click="goTo('DepartmentOverview')">إشراف الأقسام</button>
     </div>
 
-    <button @click="$emit('back')" class="back-main">العودة إلى القائمة الرئيسية</button>
+    <button @click="goTo('Home')" class="back-main">العودة إلى القائمة الرئيسية</button>
   </div>
 </template>
 
