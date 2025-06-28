@@ -23,13 +23,13 @@ export default {
 <template>
     <div class="view">
         <h2>إضافة موظف جديد</h2>
-        <form @submit.prevent="addEmployee">
+        <form @submit.prevent="addEmployee" ckass="form">
             <label for="name">الاسم:</label>
             <input type="text" id="name" v-model="empName" required>
-
+            <br>
             <label for="email">البريد الإلكتروني:</label>
             <input type="email" id="email" v-model="empEmail" required>
-
+            <br>
             <label for="role">الدور:</label>
             <select id="role" v-model="empRole" required>
                 <option value="">اختر الدور</option>
@@ -37,7 +37,7 @@ export default {
                 <option value="موظف">موظف</option>
                 <option value="محاسب">محاسب</option>
             </select>
-
+            <br>
             <button type="submit">إضافة موظف</button>
         </form>
     </div>
@@ -45,9 +45,13 @@ export default {
 <style scoped>
 .view {
     width: 60%;
-    height: 100px;
+    height: 150px;
     display: flex;
+    direction: rtl;
+    margin: 20px;
     flex-direction: column;
+    justify-self: center;
+    align-items: center;
     border: 2px solid pink;
     border-radius: 20px;
 }
