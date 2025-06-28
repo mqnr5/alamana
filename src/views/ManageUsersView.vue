@@ -2,8 +2,10 @@
   <div class="users-container">
     <h2>إدارة المستخدمين</h2>
 
-    <button class="add-user-button">➕ إضافة مستخدم</button>
-
+    <button @click="addUserVisible = true" class="add-user-button">➕ إضافة مستخدم</button>
+    <div class="add-user-form" :visible="addUserVisible">
+      <AddEmployee />
+    </div>
     <table class="users-table">
       <thead>
         <tr>
@@ -29,10 +31,17 @@
 </template>
 
 <script>
+import AddEmployee from '@/components/AddEmployee.vue';
+import { employeeBus } from '@/bus';
+
 export default {
   name: "ManageUsers",
+  components: {
+    AddEmployee
+  },
   data() {
     return {
+      addUserVisible: false,
       users: [
         { id: 1, name: "أحمد علي", email: "ahmed@example.com", role: "رئيس قسم" },
         { id: 2, name: "فاطمة حسن", email: "fatima@example.com", role: "موظف" },
@@ -40,6 +49,17 @@ export default {
       ],
     };
   },
+  mounted() {
+    employeeBus.on('add-employee', (user) => {
+      this.users.push({
+        id: this.users.length + 1,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      })
+      this.addUserVisible = false
+    })
+  }
 };
 </script>
 

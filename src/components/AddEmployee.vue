@@ -1,6 +1,7 @@
 <script>
+import { employeeBus } from '@/bus.js';
 export default {
-    name: 'AddEployee',
+    name: 'AddEmployee',
     data() {
         return {
             empName: '',
@@ -8,6 +9,15 @@ export default {
             empRole: '',
         }
     },
+    methods: {
+        addEmp() {
+            employeeBus.emit('add-employee', {
+                name: this.empName,
+                email: this.empEmail,
+                role: this.empRole
+            });
+        }
+    }
 }
 </script>
 <template>
