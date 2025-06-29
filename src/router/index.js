@@ -9,6 +9,7 @@ import EmployeeView from "@/views/EmployeeView.vue";
 import PerformanceReportsView from "@/views/PerformanceReportsView.vue";
 import MajorRequestsView from "@/views/MajorRequestsView.vue";
 import TasksView from "@/views/TasksView.vue";
+import EditEmployeeInfoView from "@/views/EditEmployeeInfoView.vue";
 
 const router = createRouter({
     history: createWebHistory('/'),
@@ -69,6 +70,11 @@ const router = createRouter({
             path: '/Tasks',
             name: 'Tasks',
             component: TasksView
+        },
+        {
+            path: '/EditEmpInfo',
+            name: 'EditEmpInfo',
+            component: EditEmployeeInfoView
         }
     ]
 })

@@ -21,8 +21,8 @@
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
           <td>
-            <button class="edit-btn">تعديل</button>
-            <button class="delete-btn">حذف</button>
+            <button @click="editEmpInfo(user)" class="edit-btn">تعديل</button>
+            <button @click="deleteUser(user)" class="delete-btn">حذف</button>
           </td>
         </tr>
       </tbody>
@@ -49,6 +49,19 @@ export default {
       ],
     };
   },
+  methods: {
+    deleteUser(user) {
+      this.users = this.users.filter(u => u.id !== user.id);
+    },
+    editEmpInfo(user) {
+      employeeBus.emit('old-employee-info', {
+          EmpName: user.name,
+          EmpEmail: user.email,
+          EmpRole: user.role
+       })
+       this.$router.push({ name: 'EditEmpInfo' })
+    }
+  },
   mounted() {
     employeeBus.on('add-employee', (user) => {
       this.users.push({
@@ -59,6 +72,10 @@ export default {
       })
       this.addUserVisible = false
     })
+  },
+  beforeMount() {
+    employeeBus.off('old-employee-info')
+    employeeBus.off('add-employee')
   }
 };
 </script>

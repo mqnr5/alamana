@@ -30,6 +30,9 @@ export default {
       this.empRole = '';
     },
   },
+  beforeMount() {
+    employeeBus.off('add-employee');
+  }
 };
 </script>
 
@@ -140,7 +143,7 @@ button[type='submit']:hover {
 .error-msg {
   color: #d94f4f;
   font-weight: 600;
-  margin-top: -10px;
+  margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
@@ -148,7 +151,7 @@ button[type='submit']:hover {
 .success-msg {
   color: #2a9d8f;
   font-weight: 600;
-  margin-top: -10px;
+  margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
