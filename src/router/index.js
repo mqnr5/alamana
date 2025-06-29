@@ -16,7 +16,7 @@ import PerformanceReportsView from "@/views/PerformanceReportsView.vue";
 import MajorRequestsView from "@/views/MajorRequestsView.vue";
 
 // واجهات فرعية خاصة بالموظف
-import EmployeeLeaves from "@/views/employee/EmployeeLeaves.vue"; // تأكد إن المسار صح
+import EmployeeLeaves from "@/views/employee/EmployeeLeaves.vue";
 
 const router = createRouter({
   history: createWebHistory('/'),
