@@ -91,7 +91,7 @@ export default {
       },
       tasks: [
         { id: 1, title: 'تحديث قاعدة البيانات', status: 'قيد التنفيذ' },
-        { id: 2, title: 'الرد على التذاكر', status: 'مكتملة' }
+        { id: 2, title: 'الرد على بريد', status: 'مكتملة' }
       ],
       notifications: [
         { id: 1, message: 'تم تعيين مهمة جديدة لك.' },
