@@ -13,7 +13,7 @@
 
     <div class="stats">
       <div class="stat-box" v-for="stat in filteredStats" :key="stat.title">
-        <span class="stat-title">{{ stat.title }}</span>
+        <span class="stat-title">{{ stat.title }} : </span>
         <span class="stat-value">{{ stat.value }}</span>
       </div>
     </div>
