@@ -9,52 +9,62 @@
       </div>
     </div>
 
-    <section class="stats">
-      <div class="stat" v-for="stat in statistics" :key="stat.label">
-        <div class="number">{{ stat.value }}</div>
-        <div class="label">{{ stat.label }}</div>
+    <!-- ✅ التبويبات -->
+    <div class="tabs">
+      <button v-for="tab in tabs" :key="tab.name" :class="{ active: currentTab === tab.name }" @click="currentTab = tab.name">
+        {{ tab.label }}
+      </button>
+    </div>
+
+    <transition name="fade" mode="out-in">
+      <div :key="currentTab">
+        <!-- ✅ المهام اليومية -->
+        <section v-if="currentTab === 'tasks'" class="section-content">
+          <h3>المهام اليومية</h3>
+          <ul>
+            <li v-for="task in tasks" :key="task.id">
+              <span>{{ task.title }}</span>
+              <select v-model="task.status">
+                <option>قيد التنفيذ</option>
+                <option>مكتملة</option>
+                <option>متأخرة</option>
+              </select>
+            </li>
+          </ul>
+          <router-link to="/Tasks" class="task-link">📋 عرض كل المهام</router-link>
+        </section>
+
+        <!-- ✅ الإشعارات -->
+        <section v-else-if="currentTab === 'notifications'" class="section-content">
+          <h3>الإشعارات</h3>
+          <ul>
+            <li v-for="note in notifications" :key="note.id">🔔 {{ note.message }}</li>
+          </ul>
+        </section>
+
+        <!-- ✅ الحضور -->
+        <section v-else-if="currentTab === 'attendance'" class="section-content">
+          <h3>سجل الحضور</h3>
+          <table>
+            <thead>
+              <tr><th>التاريخ</th><th>الحالة</th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="record in attendance" :key="record.date">
+                <td>{{ record.date }}</td>
+                <td>{{ record.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- ✅ الإجازات -->
+        <section v-else-if="currentTab === 'leaves'" class="section-content">
+          <h3>الإجازات</h3>
+          <router-link to="/EmployeeLeaves" class="task-link">📅 عرض الإجازات</router-link>
+        </section>
       </div>
-    </section>
-
-    <section class="tasks">
-      <h3>المهام اليومية</h3>
-      <ul>
-        <li v-for="task in tasks" :key="task.id">
-          <span>{{ task.title }}</span>
-          <select v-model="task.status">
-            <option>قيد التنفيذ</option>
-            <option>مكتملة</option>
-            <option>متأخرة</option>
-          </select>
-        </li>
-      </ul>
-      <router-link to="/Tasks" class="task-link">📋 عرض كل المهام</router-link>
-    </section>
-
-    <section class="notifications">
-      <h3>الإشعارات</h3>
-      <ul>
-        <li v-for="note in notifications" :key="note.id">🔔 {{ note.message }}</li>
-      </ul>
-    </section>
-
-    <section class="attendance">
-      <h3>سجل الحضور</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>التاريخ</th>
-            <th>الحالة</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="record in attendance" :key="record.date">
-            <td>{{ record.date }}</td>
-            <td>{{ record.status }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    </transition>
 
     <button class="export">📤 تصدير السجل</button>
   </div>
@@ -65,6 +75,13 @@ export default {
   name: 'EmployeeDashboard',
   data() {
     return {
+      currentTab: 'tasks',
+      tabs: [
+        { name: 'tasks', label: 'المهام' },
+        { name: 'notifications', label: 'الإشعارات' },
+        { name: 'attendance', label: 'الحضور' },
+        { name: 'leaves', label: 'الإجازات' }
+      ],
       user: {
         name: 'محمد علي',
         department: 'الدعم الفني',
@@ -72,12 +89,6 @@ export default {
         photo: 'https://i.imgur.com/6VBx3io.png',
         lastLogin: '2025-06-27 08:00AM'
       },
-      statistics: [
-        { label: 'عدد المهام', value: 12 },
-        { label: 'مهام مكتملة', value: 8 },
-        { label: 'نسبة الإنجاز', value: '66%' },
-        { label: 'طلبات مرسلة', value: 3 }
-      ],
       tasks: [
         { id: 1, title: 'تحديث قاعدة البيانات', status: 'قيد التنفيذ' },
         { id: 2, title: 'الرد على التذاكر', status: 'مكتملة' }
@@ -122,47 +133,34 @@ export default {
   border: 4px solid #d2b3db;
 }
 
-.info h2 {
-  margin: 0;
-  font-size: 24px;
-}
+.info h2 { margin: 0; font-size: 24px; }
 
-.stats {
+.tabs {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin: 30px 0;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
-.stat {
-  flex: 1 1 22%;
+.tabs button {
   background-color: #e9f3ff;
-  padding: 20px;
-  text-align: center;
+  color: #0b1957;
+  border: none;
+  padding: 10px 20px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-.number {
-  font-size: 26px;
   font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-.tasks ul,
-.notifications ul {
-  list-style: none;
-  padding: 0;
+.tabs button.active,
+.tabs button:hover {
+  background-color: #ffc046;
+  color: white;
 }
 
-.tasks li,
-.notifications li {
-  background-color: #f7f4ed;
-  margin-bottom: 10px;
-  padding: 12px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.section-content {
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 .task-link {
@@ -205,8 +203,14 @@ export default {
   margin: 30px auto 0 auto;
   transition: background-color 0.3s ease;
 }
-
 .export:hover {
   background-color: #4E5174;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>
