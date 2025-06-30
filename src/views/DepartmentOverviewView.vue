@@ -59,7 +59,7 @@ import {
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
-  name: 'DepartmentOverview',
+  name: 'DepartmentOverviewView',
   components: {
     Bar
   },
