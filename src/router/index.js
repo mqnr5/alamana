@@ -28,7 +28,13 @@ const router = createRouter({
     { path: '/PerformanceReports', name: 'PerformanceReports', component: PerformanceReportsView },
     { path: '/MajorRequests', name: 'MajorRequests', component: MajorRequestsView },
     { path: '/Employee/Leaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
-    { path: '/ReportViewer', name: 'ReportViewer', component: ReportView }
+    { path: '/ReportViewer', name: 'ReportViewer', component: ReportView },
+    {
+  path: '/DepartmentOverview',
+  name: 'DepartmentOverview',
+  component: () => import('@/views/DepartmentOverview.vue')
+}
+
   ]
 });
 
