@@ -23,11 +23,12 @@ export default {
             }
         },
         async loadPdfPages(url) {
-            const pdfjsLib = await import('pdfjs-dist/build/pdf');
-            pdfjsLib.GlobalWorkerOptions.workerSrc = 
-                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.js';
-            const pdf = await pdfjsLib.getDocument(url).promise;
-            this.totalPages = pdf.numPages;
+            const { PDFDocument } = await import('pdf-lib');
+            const response = await fetch(url);
+            const arrayBuffer = await response.arrayBuffer();
+            const pdfDoc = await PDFDocument.load(arrayBuffer);
+            pdfDoc.currentPage = this.currentPage;
+            this.totalPages = pdfDoc.getPageCount();
         },
         pageUrl() {
             if (!this.pdfUrl) return '';
