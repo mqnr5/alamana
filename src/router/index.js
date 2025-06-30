@@ -11,6 +11,7 @@ import TasksView from "@/views/TasksView.vue";
 import PerformanceReportsView from "@/views/PerformanceReportsView.vue";
 import MajorRequestsView from "@/views/MajorRequestsView.vue";
 import EmployeeLeavesView from "@/views/EmployeeLeavesView.vue";
+import ReportView from "@/views/ReportView.vue";
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -27,6 +28,7 @@ const router = createRouter({
     { path: '/PerformanceReports', name: 'PerformanceReports', component: PerformanceReportsView },
     { path: '/MajorRequests', name: 'MajorRequests', component: MajorRequestsView },
     { path: '/Employee/Leaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
+    { path: '/ReportViewer', name: 'ReportViewer', component: ReportView }
   ]
 });
 

@@ -18,6 +18,7 @@
       <button @click="goTo('PerformanceReports')">تقارير الأداء</button>
       <button @click="goTo('MajorRequests')">الطلبات الكبرى</button>
       <button @click="goTo('DepartmentOverview')">إشراف الأقسام</button>
+      <button @click="goTo('ReportViewer')">مراجعة التقارير السابقة</button>
     </div>
 
     <button @click="goTo('Home')" class="back-main">العودة إلى القائمة الرئيسية</button>

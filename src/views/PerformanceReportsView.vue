@@ -38,6 +38,7 @@
           </tr>
         </tbody>
       </table>
+      <button class="export" @click="exportReport">تصدير التقرير</button>
     </div>
 
     <div v-else class="no-data">لا توجد تقارير متاحة لهذا القسم.</div>
@@ -88,6 +89,43 @@ export default {
     getStatusLabel(report) {
       const status = this.getStatus(report);
       return status === 'excellent' ? 'ممتاز' : status === 'good' ? 'جيد' : 'ضعيف';
+    },
+    async exportReport() {
+      const { jsPDF } = await import('jspdf');
+      const autoTable = (await import('jspdf-autotable')).default;
+      const doc = new jsPDF({ orientation: "landscape" });
+      doc.setFont("helvetica");
+      doc.setFontSize(18);
+      doc.text("تقرير الأداء", 140, 15, { align: "center" });
+      doc.setFontSize(12);
+      const headers = [
+        "اسم الموظف",
+        "عدد المهام",
+        "المهام المكتملة",
+        "نسبة الإنجاز",
+        "التقييم",
+        "الحالة"
+      ];
+      const rows = this.filteredReports.map(report => [
+        report.name,
+        report.total,
+        report.completed,
+        this.calcProgress(report) + "%",
+        this.getRating(report) + "/5",
+        this.getStatusLabel(report)
+      ]);
+      let startY = 30;
+      autoTable(doc, {
+        head: [headers],
+        body: rows,
+        startY,
+        styles: { font: "helvetica", fontStyle: "normal", halign: "center" },
+        headStyles: { fillColor: [164, 0, 51], textColor: 255 },
+        bodyStyles: { textColor: 33 },
+        margin: { left: 10, right: 10 }
+      });
+
+      doc.save("performance_report.pdf");
     }
   },
 };
@@ -194,7 +232,8 @@ select:hover, select:focus {
 .status.weak {
   background-color: #A40033;
 }
-.back-main {
+.back-main,
+.export {
   margin-top: 35px;
   background-color: #A40033;
   color: white;
@@ -209,7 +248,8 @@ select:hover, select:focus {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.back-main:hover {
+.back-main:hover,
+.export:hover {
   background-color: #4E5174;
   box-shadow: 0 6px 20px rgba(78, 81, 116, 0.8);
 }
