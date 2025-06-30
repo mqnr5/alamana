@@ -27,7 +27,7 @@ const router = createRouter({
     { path: '/Tasks', name: 'Tasks', component: TasksView },
     { path: '/PerformanceReports', name: 'PerformanceReports', component: PerformanceReportsView },
     { path: '/MajorRequests', name: 'MajorRequests', component: MajorRequestsView },
-    { path: '/Employee/Leaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
+    { path: '/EmployeeLeaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
     { path: '/ReportViewer', name: 'ReportViewer', component: ReportView }
   ]
 });
