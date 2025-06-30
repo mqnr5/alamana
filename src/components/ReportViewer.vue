@@ -1,52 +1,3 @@
-<script>
-export default {
-    name: 'ReportViewer',
-    data() {
-        return {
-            pdfUrl: null,
-            currentPage: 1,
-            totalPages: 1,
-            pdfFile: null,
-        };
-    },
-    methods: {
-        onFileChange(e) {
-            const file = e.target.files[0];
-            if (file && file.type === "application/pdf") {
-                this.pdfFile = file;
-                this.pdfUrl = URL.createObjectURL(file);
-                this.currentPage = 1;
-                this.loadPdfPages(this.pdfUrl);
-            } else {
-                this.pdfUrl = null;
-                this.totalPages = 1;
-            }
-        },
-        async loadPdfPages(url) {
-            const pdfjsLib = await import('pdfjs-dist/build/pdf');
-            pdfjsLib.GlobalWorkerOptions.workerSrc = 
-                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.js';
-            const pdf = await pdfjsLib.getDocument(url).promise;
-            this.totalPages = pdf.numPages;
-        },
-        pageUrl() {
-            if (!this.pdfUrl) return '';
-            return `${this.pdfUrl}#page=${this.currentPage}`;
-        },
-        prevPage() {
-            if (this.currentPage > 1) this.currentPage--;
-        },
-        nextPage() {
-            if (this.currentPage < this.totalPages) this.currentPage++;
-        }
-    }
-  },
-  mounted() {
-    this.restoreLastFile();
-  }
-};
-</script>
-
 <template>
   <div class="report-viewer">
     <h1>📄 عارض التقارير</h1>
@@ -76,6 +27,61 @@ export default {
     </transition>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'ReportViewer',
+  data() {
+    return {
+      pdfUrl: null,
+      currentPage: 1,
+      totalPages: 1,
+      pdfFile: null,
+    };
+  },
+  methods: {
+    onFileChange(e) {
+      const file = e.target.files[0];
+      if (file && file.type === "application/pdf") {
+        this.pdfFile = file;
+        this.pdfUrl = URL.createObjectURL(file);
+        this.currentPage = 1;
+        this.loadPdfPages(this.pdfUrl);
+      } else {
+        this.pdfUrl = null;
+        this.totalPages = 1;
+      }
+    },
+    async loadPdfPages(url) {
+      const pdfjsLib = await import('pdfjs-dist/build/pdf');
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.js';
+      const pdf = await pdfjsLib.getDocument(url).promise;
+      this.totalPages = pdf.numPages;
+    },
+    pageUrl() {
+      if (!this.pdfUrl) return '';
+      return `${this.pdfUrl}#page=${this.currentPage}`;
+    },
+    prevPage() {
+      if (this.currentPage > 1) this.currentPage--;
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) this.currentPage++;
+    },
+    restoreLastFile() {
+      // ممكن تضيفين كود حفظ واسترجاع هنا إذا حبيتي
+    },
+    printPdf() {
+      const win = window.open(this.pageUrl(), '_blank');
+      if (win) win.print();
+    }
+  },
+  mounted() {
+    this.restoreLastFile();
+  }
+};
+</script>
 
 <style scoped>
 .report-viewer {
