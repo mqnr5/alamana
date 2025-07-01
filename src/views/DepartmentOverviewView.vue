@@ -41,7 +41,7 @@
         </tbody>
       </table>
     </section>
-    <ExportData />
+    <ExportData :exportData="departments" />
   </div>
 </template>
 
