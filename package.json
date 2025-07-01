@@ -13,6 +13,7 @@
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
     "mitt": "^3.0.1",
+    "msnodesqlv8": "^4.5.0",
     "mssql": "^11.0.1",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^5.3.31",
