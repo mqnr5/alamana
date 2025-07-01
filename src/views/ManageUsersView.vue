@@ -2,8 +2,11 @@
   <div class="users-container">
     <h2>إدارة المستخدمين</h2>
 
-    <button @click="addUserVisible = true" class="add-user-button">➕ إضافة مستخدم</button>
-    <div class="add-user-form" :visible="addUserVisible">
+    <button @click="addUserVisible = !addUserVisible" class="add-user-button">
+      <span v-if="!addUserVisible">➕ إضافة مستخدم</span>
+      <span v-else>➖ إخفاء نموذج المستخدم</span>
+    </button>
+    <div class="add-user-form" :hidden="!addUserVisible">
       <AddEmployee />
     </div>
     <table class="users-table">
@@ -85,7 +88,7 @@ export default {
   padding: 30px;
   border-radius: 15px;
   max-width: 1000px;
-  margin: auto;
+  margin: 20px auto;
   box-shadow: 0 0 15px rgba(210, 179, 219, 0.4);
   color: #0b1957;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

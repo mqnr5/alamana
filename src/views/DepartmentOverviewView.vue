@@ -41,6 +41,7 @@
         </tbody>
       </table>
     </section>
+    <ExportData />
   </div>
 </template>
 
@@ -55,13 +56,15 @@ import {
   CategoryScale,
   LinearScale
 } from 'chart.js'
+import ExportData from '@/components/ExportData.vue'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
   name: 'DepartmentOverviewView',
   components: {
-    Bar
+    Bar,
+    ExportData
   },
   data() {
     return {

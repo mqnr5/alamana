@@ -4,7 +4,7 @@
     <p>فيما يلي تفاصيل الطلبات المُقدمة من رؤساء الأقسام، والتي تتطلب موافقة الإدارة العليا.</p>
 
     <div class="filters">
-      <label>ترتيب حسب:</label>
+      <label>فلترة حسب:</label>
       <select v-model="sortBy">
         <option value="default">الافتراضي</option>
         <option value="pending">قيد المراجعة</option>
