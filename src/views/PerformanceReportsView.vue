@@ -91,41 +91,6 @@ export default {
       return status === 'excellent' ? 'ممتاز' : status === 'good' ? 'جيد' : 'ضعيف';
     },
     async exportReport() {
-      const { jsPDF } = await import('jspdf');
-      const autoTable = (await import('jspdf-autotable')).default;
-      const doc = new jsPDF({ orientation: "landscape" });
-      doc.setFont("helvetica");
-      doc.setFontSize(18);
-      doc.text("تقرير الأداء", 140, 15, { align: "center" });
-      doc.setFontSize(12);
-      const headers = [
-        "اسم الموظف",
-        "عدد المهام",
-        "المهام المكتملة",
-        "نسبة الإنجاز",
-        "التقييم",
-        "الحالة"
-      ];
-      const rows = this.filteredReports.map(report => [
-        report.name,
-        report.total,
-        report.completed,
-        this.calcProgress(report) + "%",
-        this.getRating(report) + "/5",
-        this.getStatusLabel(report)
-      ]);
-      let startY = 30;
-      autoTable(doc, {
-        head: [headers],
-        body: rows,
-        startY,
-        styles: { font: "helvetica", fontStyle: "normal", halign: "center" },
-        headStyles: { fillColor: [164, 0, 51], textColor: 255 },
-        bodyStyles: { textColor: 33 },
-        margin: { left: 10, right: 10 }
-      });
-
-      doc.save("performance_report.pdf");
     }
   },
 };
