@@ -33,8 +33,8 @@
               <span :class="'status ' + req.status">{{ req.status }}</span>
             </td>
             <td>
-              <button @click="updateStatus(index, 'مقبول')" :disabled="req.status !== 'قيد المراجعة'">✔ قبول</button>
-              <button @click="updateStatus(index, 'مرفوض')" :disabled="req.status !== 'قيد المراجعة'">✖ رفض</button>
+              <button @click="updateStatus(index, 'مقبول')" :disabled="req.status !== 'قيدالمراجعة'">✔ قبول</button>
+              <button @click="updateStatus(index, 'مرفوض')" :disabled="req.status !== 'قيدالمراجعة'">✖ رفض</button>
             </td>
           </tr>
         </tbody>
@@ -60,13 +60,13 @@ export default {
           department: "قسم المشاريع",
           type: "طلب ميزانية إضافية",
           description: "مشروع تطوير نظام داخلي يتطلب تمويلاً إضافياً.",
-          status: "قيد المراجعة",
+          status: "قيدالمراجعة",
         },
         {
           department: "قسم الموارد البشرية",
           type: "طلب توظيف",
           description: "نحتاج إلى توظيف موظف جديد في قسم التدريب.",
-          status: "قيد المراجعة",
+          status: "قيدالمراجعة",
         },
         {
           department: "قسم الدعم الفني",
@@ -150,8 +150,9 @@ select {
   color: white;
 }
 
-.status.قيد\:المراجعة {
+.status.قيدالمراجعة {
   background-color: #d2b3db;
+  color: black;
 }
 
 .status.مقبول {
