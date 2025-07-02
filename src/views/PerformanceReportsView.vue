@@ -38,7 +38,7 @@
           </tr>
         </tbody>
       </table>
-      <button class="export" @click="exportReport">تصدير التقرير</button>
+      <ExportData :exportData="filteredReports" />
     </div>
 
     <div v-else class="no-data">لا توجد تقارير متاحة لهذا القسم.</div>
@@ -50,8 +50,13 @@
 </template>
 
 <script>
+import ExportData from '@/components/ExportData.vue';
+
 export default {
   name: "PerformanceReports",
+  components: {
+    ExportData
+  },
   data() {
     return {
       selectedDepartment: "",
@@ -90,8 +95,6 @@ export default {
       const status = this.getStatus(report);
       return status === 'excellent' ? 'ممتاز' : status === 'good' ? 'جيد' : 'ضعيف';
     },
-    async exportReport() {
-    }
   },
 };
 </script>

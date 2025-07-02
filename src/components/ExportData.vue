@@ -14,7 +14,16 @@ export default {
   },
   methods: {
     exportToCSV() {
-      const csvContent = this.exportData.map(row => Array.isArray(row) ? row.join(",") : row).join("\n");
+      const headers = Object.keys(this.exportData[0] || {});
+      const csvRows = [
+        headers.join(","),
+        ...this.exportData.map(row => headers.map(field => 
+          `"${(row[field] !== undefined && row[field] !== null) ? String(row[field]).replace(/"/g, '""') : ''}"`
+        ).join(","))
+      ];
+      // Prepend UTF-8 BOM to support Arabic characters in Excel and other programs
+      const BOM = "\uFEFF";
+      const csvContent = BOM + csvRows.join("\n");
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -51,7 +60,7 @@ export default {
       <div class="format">
         <span>تصدير بصيغة : </span>
         <select v-model="format" required>
-          <option value="csv" disabled>CSV</option>
+          <option value="csv">CSV</option>
           <option value="json">JSON</option>
         </select>
       </div>
