@@ -15,15 +15,15 @@ export default {
     <p class="subtitle">أهلاً بك، يمكنك إدارة القسم من خلال الواجهات التالية:</p>
 
     <div class="cards">
-      <div class="card" @click="goTo('/review-reports')">
+      <div class="card" @click="goTo('/ReviewReports')">
         📑 مراجعة التقارير
         <span>عرض تقارير الأقسام والرد عليها</span>
       </div>
-      <div class="card" @click="goTo('/manage-staff')">
+      <div class="card" @click="goTo('/ManageStaff')">
         👥 إدارة الموظفين
         <span>متابعة الحضور والتقييمات والملاحظات</span>
       </div>
-      <div class="card" @click="goTo('/urgent-tasks')">
+      <div class="card" @click="goTo('/UrgentTasks')">
         ⚠️ تنبيهات عاجلة
         <span>مهام وتنبيهات يجب التعامل معها فوراً</span>
       </div>

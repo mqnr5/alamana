@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'ReviewReports',
+  name: 'ReviewReportsView',
   data() {
     return {
       reports: [

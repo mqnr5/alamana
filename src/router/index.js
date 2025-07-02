@@ -13,9 +13,9 @@ import MajorRequestsView from "@/views/MajorRequestsView.vue";
 import EmployeeLeavesView from "@/views/EmployeeLeavesView.vue";
 import ReportView from "@/views/ReportView.vue";
 import DepartmentOverviewView from "@/views/DepartmentOverviewView.vue";
-import ReviewReports from '@/views/ReviewReports.vue';
-import ManageStaff from '@/views/ManageStaff.vue';
-import UrgentTasks from '@/views/UrgentTasks.vue';
+import ReviewReportsView from "@/views/ReviewReportsView.vue";
+import UrgentTasksView from "@/views/UrgentTasksView.vue";
+import ManageStaffView from "@/views/ManageStaffView.vue";
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -36,9 +36,9 @@ const router = createRouter({
     { path: '/EmployeeLeaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
     { path: '/ReportViewer', name: 'ReportViewer', component: ReportView },
     { path: '/DepartmentOverview', name: 'DepartmentOverview', component: DepartmentOverviewView },
-    { path: '/review-reports', name: 'ReviewReports', component: ReviewReports },
-    { path: '/manage-staff', name: 'ManageStaff', component: ManageStaff },
-    { path: '/urgent-tasks', name: 'UrgentTasks', component: UrgentTasks }
+    { path: '/ReviewReports', name: 'ReviewReports', component: ReviewReportsView },
+    { path: '/ManageStaff', name: 'ManageStaff', component: ManageStaffView },
+    { path: '/UrgentTasks', name: 'UrgentTasks', component: UrgentTasksView }
   ]
 });
 
