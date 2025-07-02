@@ -17,29 +17,41 @@ import ReviewReportsView from "@/views/ReviewReportsView.vue";
 import UrgentTasksView from "@/views/UrgentTasksView.vue";
 import ManageStaffView from "@/views/ManageStaffView.vue";
 
+const routes = [
+  { path: '/', name: 'Home', component: HomeView },
+  { path: '/SuperAdmin', name: 'SuperAdmin', component: SuperAdminView },
+  { path: '/ChairManagement', name: 'ChairManagement', component: ChairManagementView, props: true },
+  { path: '/ManageUsers', name: 'ManageUsers', component: ManageUsersView },
+  { path: '/SystemSettings', name: 'SystemSettings', component: SystemSettingsView },
+  { path: '/DepartmentHead', name: 'DepartmentHead', component: DepartmentHeadView },
+  { path: '/Employee', name: 'Employee', component: EmployeeView },
+  { path: '/EditEmpInfo', name: 'EditEmpInfo', component: EditEmployeeInfoView },
+  { path: '/Tasks', name: 'Tasks', component: TasksView },
+  { path: '/PerformanceReports', name: 'PerformanceReports', component: PerformanceReportsView },
+  { path: '/MajorRequests', name: 'MajorRequests', component: MajorRequestsView },
+  { path: '/EmployeeLeaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
+  { path: '/ReportViewer', name: 'ReportViewer', component: ReportView },
+  { path: '/ReportView', name: 'ReportView', component: ReportView },
+  { path: '/DepartmentOverview', name: 'DepartmentOverview', component: DepartmentOverviewView },
+  { path: '/ReviewReports', name: 'ReviewReports', component: ReviewReportsView },
+  { path: '/ManageStaff', name: 'ManageStaff', component: ManageStaffView },
+  { path: '/UrgentTasks', name: 'UrgentTasks', component: UrgentTasksView },
+  { path: '/login', name: 'Login', component: () => import('@/components/LoginView.vue') }
+];
+
 const router = createRouter({
   history: createWebHistory('/'),
-  routes: [
-    { path: '/', name: 'Home', component: HomeView },
-    { path: '/SuperAdmin', name: 'SuperAdmin', component: SuperAdminView },
-    { path: '/ChairManagement', name: 'ChairManagement', component: ChairManagementView, props: true },
-    { path: '/ManageUsers', name: 'ManageUsers', component: ManageUsersView },
-    { path: '/SystemSettings', name: 'SystemSettings', component: SystemSettingsView },
-    { path: '/DepartmentHead', name: 'DepartmentHead', component: DepartmentHeadView },
-    { path: '/Employee', name: 'Employee', component: EmployeeView },
-    { path: '/EditEmpInfo', name: 'EditEmpInfo', component: EditEmployeeInfoView },
-    { path: '/Tasks', name: 'Tasks', component: TasksView },
-    { path: '/PerformanceReports', name: 'PerformanceReports', component: PerformanceReportsView },
-    { path: '/MajorRequests', name: 'MajorRequests', component: MajorRequestsView },
-    { path: '/EmployeeLeaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
-    { path: '/ReportViewer', name: 'ReportViewer', component: ReportView },
-    { path: '/EmployeeLeaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
-    { path: '/ReportViewer', name: 'ReportView', component: ReportView },
-    { path: '/DepartmentOverview', name: 'DepartmentOverview', component: DepartmentOverviewView },
-    { path: '/ReviewReports', name: 'ReviewReports', component: ReviewReportsView },
-    { path: '/ManageStaff', name: 'ManageStaff', component: ManageStaffView },
-    { path: '/UrgentTasks', name: 'UrgentTasks', component: UrgentTasksView }
-  ]
+  routes
+});
+
+// حمايـة قبل دخول أي صفحة
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('loggedIn') === 'true';
+  if (to.name !== 'Login' && !isAuthenticated) {
+    next({ name: 'Login' });
+  } else {
+    next();
+  }
 });
 
 export default router;
