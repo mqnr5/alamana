@@ -23,24 +23,27 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
-          <td>
+          <td class="actions">
             <button @click="editEmpInfo(user)" class="edit-btn">تعديل</button>
             <button @click="deleteUser(user)" class="delete-btn">حذف</button>
           </td>
         </tr>
       </tbody>
     </table>
+    <ExportData :exportData="users" />
   </div>
 </template>
 
 <script>
 import AddEmployee from '@/components/AddEmployee.vue';
 import { employeeBus } from '@/bus';
+import ExportData from '@/components/ExportData.vue';
 
 export default {
   name: "ManageUsers",
   components: {
-    AddEmployee
+    AddEmployee,
+    ExportData
   },
   data() {
     return {
@@ -88,6 +91,7 @@ export default {
   padding: 30px;
   border-radius: 15px;
   max-width: 1000px;
+  direction: rtl;
   margin: 20px auto;
   box-shadow: 0 0 15px rgba(210, 179, 219, 0.4);
   color: #0b1957;
@@ -148,7 +152,11 @@ h2 {
   color: #f7f4ed;
   transition: background-color 0.3s ease;
 }
-
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .edit-btn {
   background-color: #ffc046;
   color: #0b1957;

@@ -43,8 +43,8 @@
 
     <div v-else class="no-data">لا توجد تقارير متاحة لهذا القسم.</div>
 
-    <button class="back-main" @click="$router.push({ name: 'SuperAdmin' })">
-      العودة إلى لوحة السوبر أدمن
+    <button class="back-main" @click="$router.go(-1)">
+      العودة إلى الصفحة السابقة
     </button>
   </div>
 </template>

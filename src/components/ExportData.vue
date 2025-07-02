@@ -51,7 +51,7 @@ export default {
       <div class="format">
         <span>تصدير بصيغة : </span>
         <select v-model="format" required>
-          <option value="csv">CSV</option>
+          <option value="csv" disabled>CSV</option>
           <option value="json">JSON</option>
         </select>
       </div>

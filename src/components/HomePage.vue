@@ -36,7 +36,7 @@ export default {
 <style scoped>
 .home-container {
   background-color: white;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
