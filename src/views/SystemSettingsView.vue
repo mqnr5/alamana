@@ -42,19 +42,19 @@ export default {
 </script>
 <style scoped>
 .settings-container {
-  background-color: #ffffff; /* خلفية بيضاء عامة */
+  background-color: white;
   padding: 30px;
   border-radius: 15px;
   max-width: 700px;
   margin: auto;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
-  color: #0b1957; /* لون الخطوط الأساسي */
+  color: #0b1957;
   direction: rtl;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h2 {
-  color: #0b1957; /* عناوين باللون الداكن */
+  color: #0b1957;
   text-align: center;
   margin-bottom: 25px;
   font-weight: 700;
@@ -62,31 +62,31 @@ h2 {
 }
 
 .setting-section {
-  background-color: #e9f3ff; /* خلفية هادئة ومريحة للحقول */
+  background-color: #e9f3ff;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 12px;
   color: #0b1957;
   font-size: 16px;
-  border: 2px solid #d2b3db; /* إطار أنيق وناعم */
+  border: 2px solid #d2b3db;
   box-shadow: 2px 2px 8px rgba(210,179,219,0.3);
 }
 
 select {
   padding: 10px 14px;
-  border: 2px solid #d2b3db; /* إطار أفتح */
+  border: 2px solid #d2b3db;
   border-radius: 12px;
   margin-top: 10px;
   font-size: 16px;
   color: #0b1957;
-  background-color: #f7f4ed; /* خلفية مريحة */
+  background-color: #f7f4ed;
   width: 100%;
   box-sizing: border-box;
   transition: border-color 0.3s ease;
 }
 
 select:hover, select:focus {
-  border-color: #A40033; /* لون بارز عند التفاعل */
+  border-color: #A40033;
   outline: none;
 }
 
@@ -98,7 +98,7 @@ input[type="checkbox"] {
 }
 
 .backup-btn {
-  background-color: #A40033; /* لون خلفية الأزرار */
+  background-color: #A40033;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -113,6 +113,6 @@ input[type="checkbox"] {
 }
 
 .backup-btn:hover {
-  background-color: #4E5174; /* لون بديل عند التمرير */
+  background-color: #4E5174;
 }
 </style>
