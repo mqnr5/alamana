@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { get_users } from '@/api/public_operations'
 export default {
   name: 'LoginView',
   data() {
@@ -29,15 +30,17 @@ export default {
     }
   },
   methods: {
-   login() {
-  if (this.username === 'admin' && this.password === '1234') {
-    localStorage.setItem('loggedIn', 'true');
-    this.$router.push('/');
-  } else {
+    async login() {
+    const users = await get_users()
+    alert(JSON.stringify(users))
+    for (const user of users) {
+      if (user.NAME === this.username && user.password === this.password) {
+        localStorage.setItem('loggedIn', 'true');
+        this.$router.push('/');
+        return;
+      }
+    }
     this.errorMessage = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
-  }
-
-
     }
   }
 }

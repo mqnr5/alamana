@@ -3,9 +3,7 @@ node_modules
 /dist
 /.venv
 
-
-# api
-/src/api
+src/api
 
 # local env files
 .env.local
