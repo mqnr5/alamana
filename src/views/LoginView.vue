@@ -32,9 +32,8 @@ export default {
   methods: {
     async login() {
     const users = await get_users()
-    alert(JSON.stringify(users))
     for (const user of users) {
-      if (user.NAME === this.username && user.password === this.password) {
+      if (user.name === this.username && user.password === this.password) {
         localStorage.setItem('loggedIn', 'true');
         this.$router.push('/');
         return;

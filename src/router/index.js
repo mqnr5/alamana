@@ -16,6 +16,7 @@ import DepartmentOverviewView from "@/views/DepartmentOverviewView.vue";
 import ReviewReportsView from "@/views/ReviewReportsView.vue";
 import UrgentTasksView from "@/views/UrgentTasksView.vue";
 import ManageStaffView from "@/views/ManageStaffView.vue";
+import LoginView from "@/views/LoginView.vue";
 
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
@@ -36,7 +37,7 @@ const routes = [
   { path: '/ReviewReports', name: 'ReviewReports', component: ReviewReportsView },
   { path: '/ManageStaff', name: 'ManageStaff', component: ManageStaffView },
   { path: '/UrgentTasks', name: 'UrgentTasks', component: UrgentTasksView },
-  { path: '/login', name: 'Login', component: () => import('@/components/LoginView.vue') }
+  { path: '/login', name: 'Login', component: LoginView },
 ];
 
 const router = createRouter({
