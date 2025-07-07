@@ -45,14 +45,4 @@ const router = createRouter({
   routes
 });
 
-// حمايـة قبل دخول أي صفحة
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('loggedIn') === 'true';
-  if (to.name !== 'Login' && !isAuthenticated) {
-    next({ name: 'Login' });
-  } else {
-    next();
-  }
-});
-
 export default router;

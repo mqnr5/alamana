@@ -34,7 +34,8 @@ export default {
     const users = await get_users()
     for (const user of users) {
       if (user.name === this.username && user.password === this.password) {
-        localStorage.setItem('loggedIn', 'true');
+        alert('Logged In')
+        localStorage.setItem('loggedIn', `${user.id}`);
         this.$router.push('/');
         return;
       }

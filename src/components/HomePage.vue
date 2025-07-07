@@ -18,7 +18,6 @@ export default {
 };
 </script>
 
-
 <template>
   <div class="home-container">
     <div class="title">

@@ -1,6 +1,5 @@
 <script>
 import { add_user, get_departments } from '@/api/public_operations';
-import { employeeBus } from '@/bus.js';
 export default {
   name: 'AddEmployee',
   props: {
@@ -40,17 +39,16 @@ export default {
         role: this.empRole,
         department: this.empDepartment,
         status: 'Active'
-      })
-      employeeBus.emit('add-employee');
+      });
       this.successMsg = 'تمت إضافة الموظف بنجاح!';
       this.empName = '';
       this.empEmail = '';
+      this.empPassword = '';
+      this.empDepartment = 0;
       this.empRole = '';
     },
   },
-  beforeMount() {
-    employeeBus.off('add-employee');
-  }
+  beforeMount() {}
 };
 </script>
 
@@ -102,7 +100,7 @@ export default {
         <option value="محاسب">محاسب</option>
       </select>
 
-      <button type="submit">إضافة موظف</button>
+      <button @click="addEmployee">إضافة موظف</button>
 
       <p v-if="errorMsg" class="error-msg">{{ errorMsg }}</p>
       <p v-if="successMsg" class="success-msg">{{ successMsg }}</p>

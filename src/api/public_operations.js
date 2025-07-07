@@ -23,8 +23,8 @@ export async function get_tasks() {
     return [...response.data.tasks]
 }
 
-export async function get_missions() {
-    const response = await axios.get(`${BASE_URL}/missions`);
+export async function get_missions(user_id) {
+    const response = await axios.get(`${BASE_URL}/missions/${user_id}`);
     return [...response.data.missions]
 }
 

@@ -583,7 +583,6 @@ def delete_review_request(request_id: int):
 ################################################################
 
 ################################################################
-
 @api.delete('/reports/{report_id}')
 def delete_report(report_id: int):
     conn = get_connection()
@@ -632,8 +631,8 @@ api.put('/missions/{mission_id}')
 def update_mission(mission_id: int, mission: dict[str, Any]):
     conn = get_connection()
     cursor = conn.cursor()
-    query = "UPDATE missions SET title = ?, description = ?, status = ? WHERE id = ?"
-    cursor.execute(query, (mission['title'], mission['description'], mission['status'], mission_id))
+    query = "UPDATE missions SET title = ?, text = ?, status = ? WHERE id = ?"
+    cursor.execute(query, (mission['title'], mission['text'], mission['status'], mission_id))
     conn.commit()
     cursor.close()
     conn.close()

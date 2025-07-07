@@ -19,9 +19,9 @@
         :class="task.status"
       >
         <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
+        <p>{{ task.text }}</p>
         <div class="task-meta">
-          <span>تاريخ الاستحقاق: {{ task.dueDate }}</span>
+          <span>تاريخ الاستحقاق: {{ task.deadline_date }}</span>
           <span :class="'status ' + task.status">{{ statusText(task.status) }}</span>
         </div>
         <div class="progress-bar">
@@ -42,40 +42,24 @@
       </div>
     </transition-group>
 
-    <div v-if="filteredTasks.length === 0" class="no-tasks">لا توجد مهام لعرضها.</div>
+    <div v-if="filteredTasks.length === 0" class="no-tasks">لا توجد مهام جديدة.</div>
   </div>
 </template>
 
 <script>
+import { get_missions, update_task } from '@/api/public_operations';
+
 export default {
   name: "TasksView",
   data() {
     return {
       filterStatus: "all",
-      tasks: [
-        {
-          id: 1,
-          title: "تحديث التقرير الشهري",
-          description: "اجمع البيانات وقم بتحديث التقرير قبل نهاية الأسبوع.",
-          status: "pending",
-          dueDate: "2025-07-05",
-        },
-        {
-          id: 2,
-          title: "مراجعة طلب الإجازة",
-          description: "راجع طلب إجازة الموظف أحمد وقرر الموافقة أو الرفض.",
-          status: "in-progress",
-          dueDate: "2025-06-30",
-        },
-        {
-          id: 3,
-          title: "تدريب الفريق الجديد",
-          description: "إعداد خطة تدريب مفصلة للفريق الجديد.",
-          status: "completed",
-          dueDate: "2025-06-25",
-        },
-      ],
+      tasks: [],
     };
+  },
+  async mounted() {
+    const uid = localStorage.getItem('loggedIn')
+    this.tasks = await get_missions(uid)
   },
   computed: {
     filteredTasks() {
@@ -84,9 +68,10 @@ export default {
     },
   },
   methods: {
-    updateStatus(id, newStatus) {
+    async updateStatus(id, newStatus) {
       const task = this.tasks.find((t) => t.id === id);
       if (task) task.status = newStatus;
+      await update_task(task.id, task)
     },
     nextStatus(status) {
       switch (status) {

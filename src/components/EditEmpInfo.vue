@@ -65,10 +65,6 @@ import { employeeBus } from '@/bus';
 export default {
   name: 'EditEmpInfo',
   props: {
-    userId: {
-      type: Number,
-      required: true
-    }
   },
   data() {
     return {
@@ -100,7 +96,8 @@ export default {
     },
   },
   async mounted() {
-    const user = await get_user_by_id(this.userId);
+    const uid = localStorage.getItem('loggedIn');
+    const user = await get_user_by_id(uid);
     this.EmpName = user?.name || '';
     this.EmpEmail = user?.email || '';
     this.EmpPassword = user?.password || '';
