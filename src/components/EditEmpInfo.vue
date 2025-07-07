@@ -2,33 +2,51 @@
   <transition name="fade-slide">
     <div class="edit-employee-container">
       <h2>تعديل معلومات الموظف</h2>
-
+      
       <form @submit.prevent="saveEmpInfo" class="form">
-        <label for="name">الاسم:</label>
-        <input
-          type="text"
-          id="name"
-          v-model="EmpName"
-          placeholder="ادخل الاسم الكامل"
-          required
-        />
+      <label for="name">الاسم:</label>
+      <input
+        type="text"
+        id="name"
+        v-model="EmpName"
+        :placeholder="EmpName"
+        required
+      />
 
-        <label for="email">البريد الإلكتروني:</label>
-        <input
-          type="email"
-          id="email"
-          v-model="EmpEmail"
-          placeholder="ادخل البريد الإلكتروني"
-          required
-        />
+      <label for="email">البريد الإلكتروني:</label>
+      <input
+        type="email"
+        id="email"
+        v-model="EmpEmail"
+        :placeholder="EmpEmail"
+        required
+      />
 
-        <label for="role">الدور:</label>
-        <select v-model="EmpRole" id="role" required>
-          <option disabled value="">اختر الدور</option>
-          <option value="مدير">مدير</option>
-          <option value="موظف">موظف</option>
-          <option value="محاسب">محاسب</option>
-        </select>
+      <label for="password">كلمة السر:</label>
+      <input
+        type="password"
+        id="password"
+        v-model="EmpPassword"
+        :placeholder="EmpPassword"
+      />
+
+      <label for="department">القسم:</label>
+      <select id="department" v-model="EmpDepartment">
+        <option disabled value="">اختر القسم</option>
+        <option v-for="department in departments" 
+        :key="department.id" 
+        :value="department.id">
+          {{ department.name }}
+        </option>
+      </select>
+
+      <label for="role">الدور:</label>
+      <select id="role" v-model="empRole" required>
+        <option disabled value="">اختر الدور</option>
+        <option value="مدير">مدير</option>
+        <option value="موظف">موظف</option>
+        <option value="محاسب">محاسب</option>
+      </select>
 
         <button type="submit">💾 حفظ المعلومات</button>
       </form>
@@ -41,15 +59,25 @@
 </template>
 
 <script>
+import { get_user_by_id } from '@/api/public_operations';
 import { employeeBus } from '@/bus';
 
 export default {
   name: 'EditEmpInfo',
+  props: {
+    userId: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       EmpName: '',
       EmpEmail: '',
+      empPassword: '',
+      empDepartment: 0,
       EmpRole: '',
+      empStatus: '',
       toastMessage: '',
       toastType: '',
       listener: null
@@ -61,24 +89,6 @@ export default {
         this.showToast('يرجى ملء جميع الحقول', 'error');
         return;
       }
-
-      // إرسال البيانات بالباص
-      employeeBus.emit('new-employee-info', {
-        EmpName: this.EmpName,
-        EmpEmail: this.EmpEmail,
-        EmpRole: this.EmpRole
-      });
-
-      // حفظ بالمخزن لوكال ستورج هنا
-      localStorage.setItem(
-        'temp-emp-info',
-        JSON.stringify({
-          EmpName: this.EmpName,
-          EmpEmail: this.EmpEmail,
-          EmpRole: this.EmpRole
-        })
-      );
-
       this.showToast('✅ تم حفظ المعلومات بنجاح', 'success');
     },
     showToast(msg, type = 'success') {
@@ -88,25 +98,15 @@ export default {
         this.toastMessage = '';
       }, 3000);
     },
-    loadLocalInfo() {
-      const localData = localStorage.getItem('temp-emp-info');
-      if (localData) {
-        const data = JSON.parse(localData);
-        this.EmpName = data.EmpName;
-        this.EmpEmail = data.EmpEmail;
-        this.EmpRole = data.EmpRole;
-      }
-    }
   },
-  mounted() {
-    this.listener = (data) => {
-      this.EmpName = data.EmpName;
-      this.EmpEmail = data.EmpEmail;
-      this.EmpRole = data.EmpRole;
-    };
-
-    employeeBus.on('old-employee-info', this.listener);
-    this.loadLocalInfo();
+  async mounted() {
+    const user = await get_user_by_id(this.userId);
+    this.EmpName = user?.name || '';
+    this.EmpEmail = user?.email || '';
+    this.EmpPassword = user?.password || '';
+    this.EmpDepartment = user?.department || 0;
+    this.EmpRole = user?.role || '';
+    this.EmpStatus = user?.status || '';
   },
   beforeUnmount() {
     employeeBus.off('old-employee-info', this.listener);

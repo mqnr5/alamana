@@ -38,6 +38,7 @@
 import AddEmployee from '@/components/AddEmployee.vue';
 import { employeeBus } from '@/bus';
 import ExportData from '@/components/ExportData.vue';
+import { delete_user, get_users } from '@/api/public_operations';
 
 export default {
   name: "ManageUsers",
@@ -48,36 +49,20 @@ export default {
   data() {
     return {
       addUserVisible: false,
-      users: [
-        { id: 1, name: "أحمد علي", email: "ahmed@example.com", role: "رئيس قسم" },
-        { id: 2, name: "فاطمة حسن", email: "fatima@example.com", role: "موظف" },
-        { id: 3, name: "كرار محمد", email: "karar@example.com", role: "رئيس إدارة" },
-      ],
+      users: [],
     };
   },
   methods: {
-    deleteUser(user) {
-      this.users = this.users.filter(u => u.id !== user.id);
+    async deleteUser(user) {
+      await delete_user(user.id)
     },
     editEmpInfo(user) {
-      employeeBus.emit('old-employee-info', {
-          EmpName: user.name,
-          EmpEmail: user.email,
-          EmpRole: user.role
-       })
-       this.$router.push({ name: 'EditEmpInfo' })
+       this.$router.push({ name: 'EditEmpInfoView', params: { uid: user.id } })
     }
   },
-  mounted() {
-    employeeBus.on('add-employee', (user) => {
-      this.users.push({
-        id: this.users.length + 1,
-        name: user.name,
-        email: user.email,
-        role: user.role
-      })
-      this.addUserVisible = false
-    })
+  async mounted() {
+    this.users = await get_users()
+    employeeBus.on('add-employee', () => this.addUserVisible = false)
   },
   beforeMount() {
     employeeBus.off('old-employee-info')

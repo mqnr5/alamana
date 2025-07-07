@@ -1,29 +1,47 @@
 <script>
+import { add_user, get_departments } from '@/api/public_operations';
 import { employeeBus } from '@/bus.js';
 export default {
   name: 'AddEmployee',
+  props: {
+    userId: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       empName: '',
       empEmail: '',
+      empPassword: '',
+      empDepartment: 0,
       empRole: '',
       errorMsg: '',
       successMsg: '',
+      departments: []
     };
   },
+  async mounted() {
+    this.departments = await get_departments();
+  },
   methods: {
-    addEmployee() {
+    async addEmployee() {
       this.errorMsg = '';
       this.successMsg = '';
-      if (!this.empName || !this.empEmail || !this.empRole) {
+      if (!this.empName || !this.empEmail || 
+      !this.empPassword || !this.empDepartment || !this.empRole) {
         this.errorMsg = 'يرجى تعبئة جميع الحقول';
         return;
       }
-      employeeBus.emit('add-employee', {
+      await add_user({
         name: this.empName,
         email: this.empEmail,
+        password: this.empPassword,
         role: this.empRole,
-      });
+        department: this.empDepartment,
+        status: 'Active'
+      })
+      employeeBus.emit('add-employee');
       this.successMsg = 'تمت إضافة الموظف بنجاح!';
       this.empName = '';
       this.empEmail = '';
@@ -57,6 +75,24 @@ export default {
         placeholder="example@mail.com"
         required
       />
+
+      <label for="password">كلمة السر:</label>
+      <input
+        type="password"
+        id="password"
+        v-model="empPassword"
+        placeholder="أدخل كلمة السر"
+      />
+
+      <label for="department">القسم:</label>
+      <select id="department" v-model="empDepartment">
+        <option disabled value="">اختر القسم</option>
+        <option v-for="department in departments" 
+        :key="department.id" 
+        :value="department.id">
+          {{ department.name }}
+        </option>
+      </select>
 
       <label for="role">الدور:</label>
       <select id="role" v-model="empRole" required>

@@ -26,7 +26,7 @@ const routes = [
   { path: '/SystemSettings', name: 'SystemSettings', component: SystemSettingsView },
   { path: '/DepartmentHead', name: 'DepartmentHead', component: DepartmentHeadView },
   { path: '/Employee', name: 'Employee', component: EmployeeView },
-  { path: '/EditEmpInfo', name: 'EditEmpInfo', component: EditEmployeeInfoView },
+  { path: '/EditEmpInfo', name: 'EditEmpInfoView', component: EditEmployeeInfoView, props: true },
   { path: '/Tasks', name: 'Tasks', component: TasksView },
   { path: '/PerformanceReports', name: 'PerformanceReports', component: PerformanceReportsView },
   { path: '/MajorRequests', name: 'MajorRequests', component: MajorRequestsView },

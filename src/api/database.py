@@ -27,6 +27,9 @@ api.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@api.get('/')
+def root():
+    return {'Response': 'Hello, world'}
 
 ################################################################
 
@@ -63,6 +66,20 @@ def add_user(user: dict[str, Any]):
     cursor.close()
     conn.close()
     return {'message': 'User added successfully'}
+
+@api.get('/users/{user_id}')
+def get_user_by_id(user_id: int):
+    conn = get_connection()
+    cursor = conn.cursor()
+    query = "SELECT * FROM users WHERE id = ?"
+    cursor.execute(query, (user_id,))
+    columns = [column[0] for column in cursor.description]
+    row = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    if row:
+        return {'user': dict(zip(columns, row))}
+    return {'user': None}
 ################################################################
 
 ################################################################
@@ -95,6 +112,20 @@ def add_department(department: dict[str, Any]):
     cursor.close()
     conn.close()
     return {'message': 'Department added successfully'}
+
+@api.get('/departments/{department_id}')
+def get_department_by_id(department_id: int):
+    conn = get_connection()
+    cursor = conn.cursor()
+    query = "SELECT * FROM departments WHERE id = ?"
+    cursor.execute(query, (department_id,))
+    columns = [column[0] for column in cursor.description]
+    row = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    if row:
+        return {'department': dict(zip(columns, row))}
+    return {'department': None}
 ################################################################
 
 ################################################################
@@ -162,6 +193,20 @@ def add_hurryup_alert(alert: dict[str, Any]):
     cursor.close()
     conn.close()
     return {'message': 'Hurry-up alert added successfully'}
+
+@api.get('/hurryup_alerts/{department_id}')
+def get_hurryup_alert_by_id(department_id: int):
+    conn = get_connection()
+    cursor = conn.cursor()
+    query = "SELECT * FROM hurryup_alerts WHERE department_id = ?"
+    cursor.execute(query, (department_id,))
+    columns = [column[0] for column in cursor.description]
+    alerts = [dict(zip(columns, row)) for row in cursor.fetchall()]
+    cursor.close()
+    conn.close()
+    if alerts:
+        return {'hurryup_alerts': alerts}
+    return {'hurryup_alerts': []}
 ################################################################
 
 ################################################################

@@ -1,14 +1,20 @@
 <script>
 import EditEmpInfo from '@/components/EditEmpInfo.vue'
 export default {
-    name: 'EditEmployeeInfoView',
+    name: 'EditEmpInfoView',
+    props: {
+        userId: {
+            type: Number,
+            required: true
+        }
+    },
     components: {
         EditEmpInfo
     }
 }
 </script>
 <template>
-    <EditEmpInfo />
+    <EditEmpInfo :userId="userId" />
 </template>
 <style scoped>
 
