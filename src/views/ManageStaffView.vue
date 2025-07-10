@@ -15,7 +15,10 @@
         <tr v-for="staff in staffList" :key="staff.id">
           <td>{{ staff.name }}</td>
           <td>{{ staff.status }}</td>
-          <td><button @click="edit(staff)">✏️ تعديل</button></td>
+          <td class="staff-actions">
+            <button @click="edit(staff)">✏️ تعديل</button>
+            <button @click="addTask(staff)">➕ إضافة مهمة</button>
+          </td>
         </tr>
       </tbody>
     </transition-group>
@@ -39,6 +42,9 @@ export default {
   methods: {
     edit(staff) {
       this.$router.push({ name: 'EditEmpInfo', query: { id: staff.id } });
+    },
+    addTask(staff) {
+      this.$router.push({ name: 'AddTask', query: { id: staff.id } });
     }
   }
 };
@@ -86,6 +92,12 @@ h1 {
 }
 .staff-table td {
   color: #333;
+}
+.staff-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
 }
 
 button {

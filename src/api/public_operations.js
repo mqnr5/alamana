@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'https://3zpk28dv-8000.inc1.devtunnels.ms';
+const BASE_URL = 'http://127.0.0.1:8000';
 
 // ==================== GET ====================
 export async function get_users() {
@@ -9,33 +9,33 @@ export async function get_users() {
         alert('Failed to fetch data from the database')
         return 1
     } else {
-        return [...response.data.users]
+        return response.data.users
     }
 }
 
 export async function get_departments() {
     const response = await axios.get(`${BASE_URL}/departments`);
-    return [...response.data.departments]
+    return response.data.departments
 }
 
 export async function get_tasks() {
     const response = await axios.get(`${BASE_URL}/tasks`);
-    return [...response.data.tasks]
+    return response.data.tasks
 }
 
 export async function get_missions(user_id) {
     const response = await axios.get(`${BASE_URL}/missions/${user_id}`);
-    return [...response.data.missions]
+    return response.data.missions
 }
 
 export async function get_hurryup_alerts() {
     const response = await axios.get(`${BASE_URL}/hurryup_alerts`);
-    return [...response.data.hurryup_alerts]
+    return response.data.hurryup_alerts
 }
 
 export async function get_review_requests() {
     const response = await axios.get(`${BASE_URL}/review_requests`);
-    return [...response.data.review_requests]
+    return response.data.review_requests
 }
 
 export async function get_user_by_id(user_id) {
@@ -44,7 +44,7 @@ export async function get_user_by_id(user_id) {
         alert('Failed to fetch data from the database')
         return 1
     } else {
-        return [response.data.user]
+        return response.data.user
     }
 }
 
@@ -54,7 +54,7 @@ export async function get_department_by_id(department_id) {
         alert('Failed to fetch data from the database');
         return 1;
     } else {
-        return [response.data.department];
+        return response.data.department
     }
 }
 

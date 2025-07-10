@@ -17,6 +17,7 @@ import ReviewReportsView from "@/views/ReviewReportsView.vue";
 import UrgentTasksView from "@/views/UrgentTasksView.vue";
 import ManageStaffView from "@/views/ManageStaffView.vue";
 import LoginView from "@/views/LoginView.vue";
+import AddTask from "@/components/AddTask.vue";
 
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
@@ -28,6 +29,7 @@ const routes = [
   { path: '/Employee', name: 'Employee', component: EmployeeView },
   { path: '/EditEmpInfo', name: 'EditEmpInfoView', component: EditEmployeeInfoView, props: true },
   { path: '/Tasks', name: 'Tasks', component: TasksView },
+  { path: '/AddTask', name: 'AddTask', component: AddTask },
   { path: '/PerformanceReports', name: 'PerformanceReports', component: PerformanceReportsView },
   { path: '/MajorRequests', name: 'MajorRequests', component: MajorRequestsView },
   { path: '/EmployeeLeaves', name: 'EmployeeLeaves', component: EmployeeLeavesView },
