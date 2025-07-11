@@ -1,7 +1,6 @@
 <template>
   <div class="employee-dashboard">
     <div class="header">
-      <img :src="user.photo" alt="User Photo" class="avatar" />
       <div class="info">
         <h2>{{ user.name }}</h2>
         <p>{{ user.department }} | {{ user.role }}</p>
@@ -47,7 +46,10 @@
           <h3>سجل الحضور</h3>
           <table>
             <thead>
-              <tr><th>التاريخ</th><th>الحالة</th></tr>
+              <tr>
+                <th>التاريخ</th>
+                <th>الحالة</th>
+              </tr>
             </thead>
             <tbody>
               <tr v-for="record in attendance" :key="record.date">
@@ -71,6 +73,8 @@
 </template>
 
 <script>
+import { get_notifications } from '@/api/public_operations';
+
 export default {
   name: 'EmployeeDashboard',
   data() {
@@ -86,22 +90,16 @@ export default {
         name: 'محمد علي',
         department: 'الدعم الفني',
         role: 'موظف',
-        photo: 'https://i.imgur.com/6VBx3io.png',
         lastLogin: '2025-06-27 08:00AM'
       },
-      tasks: [
-        { id: 1, title: 'تحديث قاعدة البيانات', status: 'قيد التنفيذ' },
-        { id: 2, title: 'الرد على بريد', status: 'مكتملة' }
-      ],
-      notifications: [
-        { id: 1, message: 'تم تعيين مهمة جديدة لك.' },
-        { id: 2, message: 'موعد تسليم المهمة خلال 3 ساعات.' }
-      ],
-      attendance: [
-        { date: '2025-06-25', status: '✔️ حضور' },
-        { date: '2025-06-26', status: '❌ غياب' }
-      ]
+      notifications: [],
+      attendance: []
     };
+  },
+  async mounted() {
+    const uid = localStorage.getItem('loggedIn')
+    this.notifications = await get_notifications(uid)
+    
   }
 };
 </script>

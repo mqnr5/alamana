@@ -28,6 +28,11 @@ export async function get_missions(user_id) {
     return response.data.missions
 }
 
+export async function get_notifications(user_id) {
+    const response = await axios.get(`${BASE_URL}/notifications/${user_id}`);
+    return response.data.notifications
+}
+
 export async function get_hurryup_alerts() {
     const response = await axios.get(`${BASE_URL}/hurryup_alerts`);
     return response.data.hurryup_alerts

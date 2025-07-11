@@ -5,6 +5,7 @@ export default {
     name: 'AddTask',
     data() {
         return {
+            user: null,
             username: '',
             title: '',
             text: '',
@@ -16,7 +17,7 @@ export default {
     methods: {
       async addTask(title, text, deadline_date) {
         await add_task({
-          user_id: user.id,
+          user_id: this.user.id,
           title: title,
           text: text,
           deadline_date: deadline_date,
@@ -25,8 +26,8 @@ export default {
       }
     },
     async mounted() {
-        const user = await get_user_by_id(3);
-        this.username = user.name;
+        this.user = await get_user_by_id(3);
+        this.username = this.user.name;
     }
 }
 </script>
@@ -68,7 +69,8 @@ export default {
 .add-task-container {
   max-width: 450px;
   background: #f9f5ff;
-  padding: 25px 30px;
+  padding: 25px 50px;
+  justify-content: center;
   border-radius: 18px;
   box-shadow: 0 4px 10px 
   rgba(120, 80, 180, 0.15);

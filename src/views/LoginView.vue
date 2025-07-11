@@ -40,6 +40,7 @@ export default {
         return;
       }
     }
+    localStorage.setItem('loggedIn', "");
     this.errorMessage = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
     }
   }

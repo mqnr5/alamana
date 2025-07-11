@@ -44,7 +44,13 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory('/'),
-  routes
+  routes: routes
 });
 
+router.beforeEach(() => {
+  const loggedIn = localStorage.getItem('loggedIn')
+  if (!loggedIn) {
+    this.$router.push({ name: '/login' })
+  }
+})
 export default router;
