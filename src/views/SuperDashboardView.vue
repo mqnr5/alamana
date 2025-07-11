@@ -8,6 +8,8 @@
         <p>{{ card.value }}</p>
       </div>
     </div>
+    <button class="back-btn" @click="$router.go(-1)">↩️ رجوع</button>
+
   </div>
 </template>
 
@@ -17,11 +19,12 @@ import {
   get_departments,
   get_hurryup_alerts,
   get_missions,
-  get_review_requests
-} from '@/utils/public_operations'
+  get_review_requests,
+  get_reports
+} from '@/api/public_operations'
 
 export default {
-  name: 'SuperDashboardView',
+  name: 'SuperDashboard',
   data() {
     return {
       cards: []
@@ -33,7 +36,8 @@ export default {
       const departments = await get_departments();
       const alerts = await get_hurryup_alerts();
       const reviewRequests = await get_review_requests();
-      const missions = await get_missions(1); // user_id مؤقت
+      const performance_reports = await get_reports();
+      const missions = await get_missions(3); // user_id مؤقت
 
       this.cards = [
         { title: 'عدد الإدارات', value: departments.length },
@@ -41,6 +45,7 @@ export default {
         { title: 'عدد التنبيهات العاجلة', value: alerts.length },
         { title: 'عدد الطلبات الكبرى', value: reviewRequests.length },
         { title: 'عدد المهمات', value: missions.length },
+        { title: 'عدد تقارير الأداء', value: performance_reports.length },
       ];
     } catch (err) {
       console.error('فشل تحميل البيانات:', err);
@@ -91,7 +96,7 @@ export default {
 }
 
 .card h3 {
-  font-size: 17px;
+  font-size: 20px;
   color: #4e5174;
   margin-bottom: 10px;
 }
@@ -100,5 +105,28 @@ export default {
   font-size: 24px;
   font-weight: bold;
   color: #0b1957;
+}
+
+button {
+  background-color: #3b3b99;
+  color: white;
+  padding: 8px 18px;
+  border: none;
+  margin: 30px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #25257c;
+}
+
+.back-btn {
+  background-color: #a40033;
+}
+.back-btn:hover {
+  background-color: #7b0028;
 }
 </style>

@@ -18,6 +18,7 @@ import UrgentTasksView from "@/views/UrgentTasksView.vue";
 import ManageStaffView from "@/views/ManageStaffView.vue";
 import LoginView from "@/views/LoginView.vue";
 import AddTask from "@/components/AddTask.vue";
+import SuperDashboardView from "@/views/SuperDashboardView.vue";
 
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
@@ -40,12 +41,7 @@ const routes = [
   { path: '/ManageStaff', name: 'ManageStaff', component: ManageStaffView },
   { path: '/UrgentTasks', name: 'UrgentTasks', component: UrgentTasksView },
   { path: '/login', name: 'Login', component: LoginView },
-  {
-  path: '/super-dashboard',
-  name: 'SuperDashboardView',
-  component: () => import('@/views/SuperDashboardView.vue')
-}
-
+  { path: '/super-dashboard', name: 'SuperDashboard', component: SuperDashboardView }
 ];
 
 const router = createRouter({

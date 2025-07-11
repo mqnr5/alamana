@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'https://3zpk28dv-8000.inc1.devtunnels.ms';
+const BASE_URL = 'http://127.0.0.1:8000';
 
 // ==================== GET ====================
 export async function get_users() {
@@ -39,8 +39,13 @@ export async function get_hurryup_alerts() {
 }
 
 export async function get_review_requests() {
-    const response = await axios.get(`${BASE_URL}/review_requests`);
+    const response = await axios.get(`${BASE_URL}/review-requests`);
     return response.data.review_requests
+}
+
+export async function get_reports() {
+    const response = await axios.get(`${BASE_URL}/reports`);
+    return response.data.reports
 }
 
 export async function get_user_by_id(user_id) {
@@ -86,6 +91,16 @@ export async function add_task(task) {
 
 export async function add_mission(mission) {
     const response = await axios.post(`${BASE_URL}/missions`, mission);
+    return response.data;
+}
+
+export async function add_attendance(attendance) {
+    const response = await axios.post(`${BASE_URL}/attends`, attendance);
+    return response.data;
+}
+
+export async function add_leave(leave) {
+    const response = await axios.post(`${BASE_URL}/leaves`, leave);
     return response.data;
 }
 

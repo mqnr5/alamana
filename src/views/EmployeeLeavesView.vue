@@ -29,11 +29,11 @@
         class="leave-card"
         v-for="leave in filteredLeaves"
         :key="leave.id"
-        :class="leave.statusClass"
+        :class="leave.status"
       >
         <h4>{{ leave.title }}</h4>
         <p><strong>📅</strong> {{ leave.date }}</p>
-        <p><strong>📝</strong> {{ leave.notes || 'لا توجد ملاحظات' }}</p>
+        <p><strong>📝</strong> {{ leave.details }}</p>
         <span>{{ leave.status }}</span>
       </div>
     </transition-group>
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { add_leave } from '@/api/public_operations';
+
 export default {
   name: 'EmployeeLeavesView',
   data() {
@@ -59,26 +61,26 @@ export default {
   computed: {
     filteredLeaves() {
       return this.selectedStatus
-        ? this.leaves.filter(l => l.status === this.selectedStatus)
-        : this.leaves;
+        ? this.leaves.filter(l => l.status 
+        === this.selectedStatus) : this.leaves;
     }
   },
   methods: {
-    submitLeave() {
-      const newEntry = {
-        ...this.newLeave,
-        id: Date.now(),
-        statusClass: this.getStatusClass(this.newLeave.status)
-      };
-      this.leaves.unshift(newEntry);
-      localStorage.setItem('employee-leaves', JSON.stringify(this.leaves));
+    async submitLeave() {
+      const uid = parseInt(localStorage.getItem('loggedIn'));
+      this.newLeave = {
+        user_id: uid,
+        ...this.newLeave
+      }
+      await add_leave(this.newLeave);
       this.resetForm();
     },
     resetForm() {
       this.newLeave = {
+        user_id: 0,
         title: '',
-        date: '',
-        notes: '',
+        leave_date: '',
+        details: '',
         status: 'قيد الانتظار'
       };
       this.showForm = false;
@@ -90,13 +92,8 @@ export default {
         'قيد الانتظار': 'pending'
       }[status];
     },
-    loadLeaves() {
-      const stored = localStorage.getItem('employee-leaves');
-      this.leaves = stored ? JSON.parse(stored) : [];
-    }
   },
   mounted() {
-    this.loadLeaves();
   }
 };
 </script>

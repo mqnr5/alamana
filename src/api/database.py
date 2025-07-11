@@ -287,12 +287,13 @@ def add_leave(leave: dict[str, Any]):
     query = \
     """
     INSERT INTO leaves 
-    (user_id, title, leave_date, details)
-    VALUES (?, ?, ?, ?);
+    (user_id, title, leave_date, details, status)
+    VALUES (?, ?, ?, ?, ?);
     """
     cursor.execute(query, (
         leave['user_id'], leave['title'], 
-        leave['leave_date'], leave['details']
+        leave['leave_date'], leave['details'],
+        leave['status']
     ))
     conn.commit()
     cursor.close()
@@ -369,6 +370,18 @@ def add_notification(notification: dict[str, Any]):
 ################################################################
 
 ################################################################
+@api.get('/review-requests')
+def get_review_requests():
+    conn = get_connection()
+    cursor = conn.cursor()
+    query = "SELECT * FROM review_requests"
+    cursor.execute(query)
+    columns = [column[0] for column in cursor.description]
+    review_requests = [dict(zip(columns, row)) for row in cursor.fetchall()]
+    cursor.close()
+    conn.close()
+    return {'review_requests': review_requests}
+
 @api.get('/review-requests/{department_id}')
 def get_review_requests(department_id: int):
     conn = get_connection()

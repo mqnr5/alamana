@@ -43,12 +43,12 @@ export default {
                 required
             />
             <label for="mission-text">نص المهمة :</label>
-            <input
+            <textarea
                 type="text"
                 id="mission-text"
                 v-model="text"
                 required
-            />
+            ></textarea>
 
             <label for="mission-deadline">تاريخ الانتهاء :</label>
             <input
@@ -97,7 +97,8 @@ h2 {
   color: #6d7cd9;
 }
 
-.form input {
+.form input,
+.form textarea {
   width: 100%;
   padding: 10px 14px;
   margin-bottom: 18px;
@@ -109,11 +110,8 @@ h2 {
   transition: border-color 0.3s ease;
 }
 
-input[id="mission-text"] {
-    height: 100px;
-}
-
-.form input:focus {
+.form input:focus,
+.form textarea:focus {
   border-color: #8f0b13;
   outline: none;
   background-color: #fff;

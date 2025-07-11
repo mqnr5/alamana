@@ -1,10 +1,20 @@
 <script>
+import { get_user_by_id } from '@/api/public_operations';
+
 export default {
   name: 'HomePage',
   data() {
     return {
       title: 'نظام الأمانة العامة - العتبة العلوية المقدسة',
+      superAdmin: false,
     };
+  },
+  async mounted() {
+    const uid = localStorage.getItem('loggedIn')
+    const user = await get_user_by_id(uid)
+    if (user.department === 1) {
+      this.superAdmin = true
+    }
   },
   methods: {
     goToSection(section, props) {
@@ -29,6 +39,7 @@ export default {
       <button @click="goToSection('ChairManagement', false)" class="section-button">رئيس الإدارة</button>
       <button @click="goToSection('DepartmentHead', false)" class="section-button">رئيس القسم</button>
       <button @click="goToSection('Employee', false)" class="section-button">الموظف</button>
+      <button v-if="superAdmin" @click="goToSection('SuperDashboard', false)" class="section-button">لوحة تحكم السوبر أدمـن</button>
     </div>
   </div>
 </template>
