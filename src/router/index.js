@@ -40,6 +40,12 @@ const routes = [
   { path: '/ManageStaff', name: 'ManageStaff', component: ManageStaffView },
   { path: '/UrgentTasks', name: 'UrgentTasks', component: UrgentTasksView },
   { path: '/login', name: 'Login', component: LoginView },
+  {
+  path: '/super-dashboard',
+  name: 'SuperDashboardView',
+  component: () => import('@/views/SuperDashboardView.vue')
+}
+
 ];
 
 const router = createRouter({

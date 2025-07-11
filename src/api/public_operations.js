@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'https://3zpk28dv-8000.inc1.devtunnels.ms';
 
 // ==================== GET ====================
 export async function get_users() {
